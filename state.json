@@ -1,6 +1,6 @@
 {
  "last_issue": 5,
- "last_sent": "2026-10-18 21:24",
+ "last_sent": "2026-10-18 21:42",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -26,6 +26,10 @@
   "Louis-CFM/coucou",
   "zai-org/ZCode",
   "QingYunA/answer-me-with-html",
-  "trycompai/crm"
+  "trycompai/crm",
+  "storytold/photocraft",
+  "morluto/rea",
+  "nexu-io/open-design",
+  "JuliusBrussee/caveman"
  ]
 }
