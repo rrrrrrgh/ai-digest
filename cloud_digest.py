@@ -70,14 +70,43 @@ def main():
 
     # 5. 发
     push_args = ["--issue", "auto-issue.json"] + (["--dry"] if dry else [])
-    log("发邮件…" if not dry else "（dry：只生成，不发送）")
+    log("发微信…" if not dry else "（dry：只生成，不发送）")
     rc = run("push.py", push_args, allow_codes=(0, 2))
     if rc == 2:
-        log("还没配置发信通道：channels.json 或环境变量里缺 MAIL_USER / MAIL_PASS")
+        log("还没配置推送通道：channels.json 或环境变量里缺 token")
         return 2
     log("这一期发出去了 ✅")
     return 0
 
 
+def alert(reason):
+    """出事了别闷着：给手机发一条短消息，说明哪一步挂了。"""
+    try:
+        sys.path.insert(0, HERE)
+        import push
+        cfg = push.load_channels()
+        if not (cfg.get("pushplus_token") or cfg.get("serverchan_key")
+                or cfg.get("webhook") or cfg.get("mail_pass")):
+            return
+        html = ("<div style=\"font-family:-apple-system,'PingFang SC',sans-serif;"
+                "font-size:16px;line-height:1.8;padding:6px 2px;\">"
+                "<b>这期没发出去</b><br><br>" + str(reason)[:600] +
+                "<br><br><span style=\"color:#888;font-size:13px;\">"
+                "修好后可以在 Actions 里点 Run workflow 手动补一期。</span></div>")
+        push.send_pushplus(cfg, "AI 雷达：这期没发出去", html) \
+            if cfg.get("pushplus_token") else None
+        log("已发失败告警")
+    except Exception as e:
+        log(f"告警也没发出去：{type(e).__name__}")
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except SystemExit:
+        raise
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        alert(f"{type(e).__name__}: {e}")
+        sys.exit(1)

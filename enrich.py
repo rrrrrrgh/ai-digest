@@ -27,6 +27,29 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 UA = {"User-Agent": "Mozilla/5.0 (compatible; ai-digest/1.0)"}
 PROXY = "https://gh-proxy.com/"
 
+TAG_RULES = [
+    (r"(cuda|vram|\b\d+ ?gb (?:of )?(?:vram|gpu))", "要显卡"),
+    (r"\b(esp32|arduino|raspberry pi|stm32|usb hid|开发板)\b", "要买硬件"),
+    (r"\b(openai|anthropic|api key|api_key|bring your own key|byok)\b", "要 API Key"),
+    (r"\b(docker|docker-compose|self-hosted|自部署)\b", "要 Docker"),
+    (r"\b(cli|command line|terminal|命令行)\b", "命令行"),
+    (r"(本地运行|本地部署|offline|local-first|100% local|完全离线)", "本地跑"),
+    (r"(free|open.?source|开源|免费)", "免费开源"),
+]
+
+
+def guess_tags(blob, readme_zh=""):
+    """没有大模型时，用关键词猜 2~3 个门槛标签。"""
+    low = (blob or "").lower()
+    tags = []
+    for pat, tag in TAG_RULES:
+        if re.search(pat, low) and tag not in tags:
+            tags.append(tag)
+    if "本地跑" in tags and "免费开源" in tags:
+        tags = [t for t in tags if t != "免费开源"]
+    return tags[:2]
+
+
 GLOSSARY = [
     ("DeepSeek 线束 桌面版", "DeepSeek Harness 桌面版"),
     ("DeepSeek线束 桌面版", "DeepSeek Harness 桌面版"),
@@ -268,6 +291,9 @@ def llm_polish(repo, readme_brief):
         '"detail":"它到底在干嘛：3 句话、80~140 字，讲清「解决什么问题 + 怎么用 + 使用门槛」，'
         '读完要让完全没听过这个领域的人也能明白",'
         '"why":["三条为什么现在值得看，每条 35 字内，要具体，不要空话"],'
+        '"tags":["2~3 个门槛标签，从这些里挑：要显卡/要 Mac/要 iPhone/要买硬件/'
+        '要 API Key/要 Docker/命令行/网页版/免费开源/本地跑/有中文/要梯子。'
+        '没有合适的可以自己造，但每条不超过 6 个字"],'
         '"try_it":"一个可以立刻上手的土办法，50 字内"}'
     )
     payload = {
@@ -314,11 +340,55 @@ def llm_polish(repo, readme_brief):
             "one_liner": str(data.get("one_liner"))[:160],
             "detail": str(data.get("detail") or "")[:400],
             "why": [str(x)[:90] for x in (data.get("why") or [])][:3],
+            "tags": [str(x)[:8] for x in (data.get("tags") or [])][:3],
             "try_it": str(data.get("try_it") or "")[:120],
         }
     except Exception as e:
         print(f"    ! 大模型失败（{type(e).__name__}: {str(e)[:80]}），退回翻译模式")
         return None
+
+
+
+
+def llm_compare(picks):
+    """这一期里如果有两个项目解决同一类问题，让模型写一句"怎么选"。没有就返回空。"""
+    key = os.environ.get("LLM_API_KEY", "").strip()
+    if not key or len(picks) < 2:
+        return ""
+    base = (os.environ.get("LLM_BASE_URL") or "https://api.deepseek.com").rstrip("/")
+    model = os.environ.get("LLM_MODEL") or "deepseek-flash"
+    lines = "\n".join(f"- {p.get('name')}（{p.get('tag') or ''}）：{p.get('one_liner')}"
+                      for p in picks)
+    prompt = (
+        "下面是一期推送里的几个项目。如果有两个或更多项目在解决同一类问题（比如都是浏览器、"
+        "都是视频生成、都是文档工具），写一句话说清它们的区别和怎么选，30 字内，说人话。\n"
+        "如果彼此不重叠，就只输出一个空字符串（不要输出别的）。\n"
+        "只输出那一句话本身，不要引号、不要解释。\n\n" + lines
+    )
+    try:
+        import json as _json
+        import urllib.request as _u
+        body = {
+            "model": model,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.6,
+            "max_tokens": 80,
+        }
+        if "deepseek.com" in base:
+            body["thinking"] = {"type": "disabled"}
+        req = _u.Request(base + "/chat/completions", data=_json.dumps(body).encode("utf-8"),
+                         headers={"Content-Type": "application/json",
+                                  "Authorization": "Bearer " + key})
+        with _u.urlopen(req, timeout=45) as r:
+            res = _json.loads(r.read().decode("utf-8", "replace"))
+        t = (res["choices"][0]["message"].get("content") or "").strip().strip('"“”')
+        t = t.splitlines()[0].strip() if t else ""
+        if 8 <= len(t) <= 60 and has_cjk(t):
+            print(f"   · 同类对比：{t}")
+            return t
+    except Exception as e:
+        print(f"   ! 同类对比失败（{type(e).__name__}）")
+    return ""
 
 
 # ---------------------------------------------------------------- 主流程
@@ -395,6 +465,9 @@ def enrich_issue(path):
             "detail": "",
             "why": [],
             "try_it": "",
+            "tags": guess_tags((p.get("desc_raw") or "") + " " + (brief or "") + " "
+                               + " ".join(p.get("topics") or []) + " "
+                               + (p.get("language") or "")),
         }
         if sentences:
             fallback["detail"] = "".join(sentences[:3])[:300]
@@ -430,9 +503,13 @@ def enrich_issue(path):
             p["why"] = []
         if text.get("try_it") and has_cjk(text["try_it"]):
             p["try_it"] = text["try_it"]
+        p["tags"] = [t for t in (text.get("tags") or []) if t][:3] or p.get("tags") or []
         p["how"] = p.get("how") or "看 README 照着装"
 
     if use_llm and mode == "llm" and len(issue.get("picks") or []) >= 2:
+        cmp_line = llm_compare(issue["picks"])
+        if cmp_line:
+            issue["compare"] = cmp_line
         t = llm_title(issue["picks"])
         if t:
             issue["push_title"] = t

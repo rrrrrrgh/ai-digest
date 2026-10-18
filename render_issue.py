@@ -171,6 +171,13 @@ def render_html(issue):
                      + '</div>')
         parts.append(f'<div style="{CSS_NAME}">{esc(p.get("emoji",""))} '
                      f'{i}. {esc(p["name"])}</div>')
+        if p.get("tags"):
+            chips = "".join(
+                f'<span style="display:inline-block;font-size:11.5px;line-height:1.6;'
+                f'padding:1px 7px;margin:2px 5px 2px 0;border-radius:20px;'
+                f'background:#eef2f7;color:#5b6472;">{esc(t)}</span>'
+                for t in p["tags"] if t)
+            parts.append(f'<div style="margin:2px 0 2px;">{chips}</div>')
         if p.get("repo"):
             parts.append(f'<div style="font-size:12.5px;color:#98a2b3;margin:0 0 2px;">'
                          f'{esc(p["repo"])}</div>')
@@ -203,6 +210,12 @@ def render_html(issue):
         if p.get("url"):
             parts.append(f'<a href="{esc(p["url"])}" style="{CSS_BTN}">打开 GitHub 看看 →</a>')
         parts.append('</div>')
+
+    if issue.get("compare"):
+        parts.append(f'<div style="margin:26px 0 0;padding:12px 15px;background:#f2f7ff;'
+                     f'border:1px solid #d9e6fb;border-radius:12px;font-size:14.5px;'
+                     f'line-height:1.75;color:#2b4a72;">'
+                     f'<b>同类怎么选</b>：{esc(issue["compare"])}</div>')
 
     if issue.get("outro"):
         parts.append(f'<div style="font-size:15.5px;line-height:1.85;color:#33363d;'

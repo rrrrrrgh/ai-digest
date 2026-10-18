@@ -48,15 +48,19 @@ def load():
 
 
 def save(items):
-    seen, rows = set(), []
+    seen, rows = {}, []
     for it in items:
-        if it["repo"] in seen:
+        r = it["repo"]
+        if r in seen:
+            if not seen[r]["one"] and it.get("one"):
+                seen[r]["one"] = it["one"]
             continue
-        seen.add(it["repo"])
-        rows.append(f'- [ ] `{it["repo"]}`' + (f' — {it["one"]}' if it["one"] else ""))
+        seen[r] = {"repo": r, "one": (it.get("one") or "").strip()}
+        rows.append(r)
+    lines = [f'- [ ] `{k}`' + (f' — {seen[k]["one"]}' if seen[k]["one"] else "") for k in rows]
     with open(STORE, "w", encoding="utf-8") as f:
-        f.write(HEAD + f"（更新于 {time.strftime('%Y-%m-%d %H:%M')}）\n\n" + "\n".join(rows) + "\n")
-    return len(rows)
+        f.write(HEAD + f"（更新于 {time.strftime('%Y-%m-%d %H:%M')}）\n\n" + "\n".join(lines) + "\n")
+    return len(lines)
 
 
 def parse_issues(issues):
