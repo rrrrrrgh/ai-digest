@@ -1,5 +1,5 @@
 {
- "issue_no": 3,
+ "issue_no": 4,
  "date": "2026-10-18",
  "push_title": "速报 · 4 个正在涨星的 AI 项目（10-18）",
  "title": "4 个正在涨星的 AI 项目",
@@ -8,76 +8,93 @@
  "picks": [
   {
    "emoji": "🔭",
-   "name": "genoffice",
-   "repo": "genspark-ai/genoffice",
+   "name": "dsh-desktop",
+   "repo": "dataelement/dsh-desktop",
    "tag": "AI Agent",
-   "meta": "★9,923 · 约 +126 星/天 · TypeScript · 建库 2026-07-31",
-   "one_liner": "免费、开源的AI Office套件：具有内置AI代理的文档、表格、幻灯片、PDF、Markdown和HTML编辑器，以及“genoffice” CLI和代理技能，因此Claude Code、Codex和Cursor可以在本地创建和编辑真正的.docx/.xlsx/.pptx文件……",
-   "desc_raw": "Free, open-source AI Office suite: Docs, Sheets, Slides, PDF, Markdown and HTML editors with a built-in AI agent, plus a `genoffice` CLI and agent skill so Claude Code, Codex and Cursor can create and edit real .docx/.xlsx/.pptx files locally. Bring your own key. macOS, Windows & Linux.",
-   "why": [
-    "QUERY LENGTH LIMIT EXCEEDED.",
-    "MAX ALLOWED QUERY : 500 CHARS"
-   ],
-   "how": "装个 Node 就能跑；要 Mac",
-   "url": "https://github.com/genspark-ai/genoffice",
-   "desc_en": "Free, open-source AI Office suite: Docs, Sheets, Slides, PDF, Markdown and HTML editors with a built-in AI agent, plus a `genoffice` CLI and agent skill so Claude Code, Codex and Cursor can create and edit real .docx/.xlsx/.pptx files locally. Bring your own key. macOS, Windows & Linux.",
-   "try_it": "",
-   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/genspark-ai/genoffice/main/docs/assets/readme/hero.webp"
-  },
-  {
-   "emoji": "🔭",
-   "name": "codex-chatgpt-web",
-   "repo": "miuuyy/codex-chatgpt-web",
-   "tag": "Coding Agent",
-   "meta": "★14,509 · 约 +173 星/天 · TypeScript · 建库 2026-07-26",
-   "one_liner": "在不使用Codex配额的情况下，将ChatGPT Web （包括Pro ）用作Codex中的本机模型，包括上下文、工具、流媒体和图像。",
-   "desc_raw": "Use ChatGPT Web (including Pro) as a native model in Codex — with context, tools, streaming and images, without using Codex quota.",
+   "meta": "★15,088 · 约 +229 星/天 · JavaScript · 建库 2026-08-13",
+   "one_liner": "DSHDesktop ： DeepSeek线束桌面/DeepSeek线束 桌面版",
+   "desc_raw": "DSHDesktop：DeepSeek Harness Desktop / DeepSeek Harness 桌面版",
+   "stars": 15088,
+   "stars_per_day": 229.2,
+   "language": "JavaScript",
+   "age_days": 65.8,
    "why": [
     "QUERY LENGTH LIMIT EXCEEDED.",
     "MAX ALLOWED QUERY : 500 CHARS"
    ],
    "how": "装个 Node 就能跑",
-   "url": "https://github.com/miuuyy/codex-chatgpt-web",
-   "desc_en": "Use ChatGPT Web (including Pro) as a native model in Codex — with context, tools, streaming and images, without using Codex quota.",
+   "url": "https://github.com/dataelement/dsh-desktop",
+   "desc_en": "DSHDesktop：DeepSeek Harness Desktop / DeepSeek Harness 桌面版",
    "try_it": "",
-   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/miuuyy/codex-chatgpt-web/main/assets/demo.gif"
+   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/dataelement/dsh-desktop/main/docs/images/dsh-desktop-hero-v021.png"
   },
   {
    "emoji": "🔭",
-   "name": "aurelio-finance",
-   "repo": "LosaLosSantos/aurelio-finance",
-   "tag": "大模型",
-   "meta": "★3,952 · 约 +343 星/天 · Python · 建库 2026-10-06",
-   "one_liner": "拥有人工智能财务顾问的开源个人理财应用程序：在您自己的计算机上跟踪您的净资产、投资、ETF、现金和债务。",
-   "desc_raw": "Open-source personal finance app with an AI financial advisor: track your net worth, investments, ETFs, cash and debts on your own computer.",
+   "name": "OpenDots",
+   "repo": "CopilotKit/OpenDots",
+   "tag": "AI 项目",
+   "meta": "★5,541 · 约 +296 星/天 · TypeScript · 建库 2026-09-29",
+   "one_liner": "始终在线的人工智能同事可以在短信、通话和Slack之间切换。",
+   "desc_raw": "Your always-on AI coworkers that move between text, calls, and Slack.",
+   "stars": 5541,
+   "stars_per_day": 296.5,
+   "language": "TypeScript",
+   "age_days": 18.7,
    "why": [
     "QUERY LENGTH LIMIT EXCEEDED.",
     "MAX ALLOWED QUERY : 500 CHARS"
    ],
-   "how": "装个 Python 环境就能跑",
-   "url": "https://github.com/LosaLosSantos/aurelio-finance",
-   "desc_en": "Open-source personal finance app with an AI financial advisor: track your net worth, investments, ETFs, cash and debts on your own computer.",
+   "how": "装个 Node 就能跑",
+   "url": "https://github.com/CopilotKit/OpenDots",
+   "desc_en": "Your always-on AI coworkers that move between text, calls, and Slack.",
    "try_it": "",
-   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/LosaLosSantos/aurelio-finance/main/docs/banner-light.gif"
+   "cover": "https://opengraph.githubassets.com/1/CopilotKit/OpenDots"
   },
   {
    "emoji": "🔭",
-   "name": "jev-chat-jarvis",
-   "repo": "jev-chat/jev-chat-jarvis",
-   "tag": "大模型",
-   "meta": "★7,872 · 约 +293 星/天 · Kotlin · 建库 2026-09-21",
-   "one_liner": "聊天决策助理：在您回复之前， Jev会阅读聊天，判断意图和风险，并轻触一下即可起草您填写的回复。您按发送。Android · Windows · macOS · iOS 聊天辅助决策工具|先看懂对方再回复 ，发不发由你。",
-   "desc_raw": "The chat decision assistant: before you reply, Jev reads the chat, judges intent and risk, and drafts replies you fill in with one tap. You press send. Android · Windows · macOS · iOS | 聊天辅助决策工具：先看懂对方再回复，发不发由你。",
+   "name": "shaders",
+   "repo": "shader-effects-inc/shaders",
+   "tag": "MCP 工具",
+   "meta": "★5,017 · 约 +268 星/天 · TypeScript · 建库 2026-09-29",
+   "one_liner": "React、Vue、Svelte、Solid、JS和Framer的WebGPU组件",
+   "desc_raw": "WebGPU components for React, Vue, Svelte, Solid, JS & Framer",
+   "stars": 5017,
+   "stars_per_day": 268.1,
+   "language": "TypeScript",
+   "age_days": 18.7,
    "why": [
-    "热度：7,872 星，平均每天涨 293 星，仓库 27 天大。",
-    "语言 Kotlin ｜ Fork 1,275 ｜ 最近更新 2026-10-16"
+    "QUERY LENGTH LIMIT EXCEEDED.",
+    "MAX ALLOWED QUERY : 500 CHARS"
    ],
-   "how": "要装 App，手机端折腾；要 Mac",
-   "url": "https://github.com/jev-chat/jev-chat-jarvis",
-   "desc_en": "The chat decision assistant: before you reply, Jev reads the chat, judges intent and risk, and drafts replies you fill in with one tap. You press send. Android · Windows · macOS · iOS | 聊天辅助决策工具：先看懂对方再回复，发不发由你。",
-   "cover": "https://opengraph.githubassets.com/1/jev-chat/jev-chat-jarvis"
+   "how": "装个 Node 就能跑",
+   "url": "https://github.com/shader-effects-inc/shaders",
+   "desc_en": "WebGPU components for React, Vue, Svelte, Solid, JS & Framer",
+   "try_it": "",
+   "cover": "https://shaders.com/og.jpg"
+  },
+  {
+   "emoji": "🔭",
+   "name": "yovoice",
+   "repo": "leemysw/yovoice",
+   "tag": "MCP 工具",
+   "meta": "★1,638 · 约 +50 星/天 · TypeScript · 建库 2026-09-15",
+   "one_liner": "适用于macOS和Windows的开源本地AI音频和音乐工作室。TTS、语音克隆、歌词歌曲和多曲目分数— 100%离线，零API费用。",
+   "desc_raw": "Open-source local AI audio & music studio for macOS & Windows. TTS, voice cloning, songs with lyrics, and multi-track scores — 100% offline, zero API fees.",
+   "stars": 1638,
+   "stars_per_day": 50.0,
+   "language": "TypeScript",
+   "age_days": 32.8,
+   "why": [
+    "QUERY LENGTH LIMIT EXCEEDED.",
+    "MAX ALLOWED QUERY : 500 CHARS"
+   ],
+   "how": "装个 Node 就能跑；要 Mac",
+   "url": "https://github.com/leemysw/yovoice",
+   "desc_en": "Open-source local AI audio & music studio for macOS & Windows. TTS, voice cloning, songs with lyrics, and multi-track scores — 100% offline, zero API fees.",
+   "try_it": "",
+   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/leemysw/yovoice/main/docs/images/yovoice-workspace.png"
   }
  ],
  "outro": "速报只解决「不漏」。精读版会解释这东西到底能干嘛、坑在哪、你该不该动手。",
- "footer": "AI 项目雷达 · 第 3 期（自动速报）· 2026-10-18"
+ "footer": "AI 项目雷达 · 第 4 期（自动速报）· 2026-10-18"
 }
