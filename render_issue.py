@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""把 issue.json 渲染成：手机友好的 HTML / Markdown / 纯文本速览。
+
+用法:
+    python render_issue.py issue.json
+输出:
+    build/issue-<no>.html   (微信里点开就是一张长图的感觉)
+    build/issue-<no>.md
+    build/issue-<no>.txt    (通知栏预览用的一句话)
+"""
+import html
+import json
+import os
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+BUILD = os.path.join(HERE, "build")
+
+CSS_WRAP = ("max-width:680px;margin:0 auto;padding:26px 18px 34px;"
+            "font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;"
+            "font-size:16px;line-height:1.75;color:#1b1b1f;background:#ffffff;"
+            "-webkit-text-size-adjust:100%;word-break:break-word;")
+CSS_CARD = ("margin:20px 0 0;padding:18px 16px 16px;background:#f7f8fa;"
+            "border-radius:14px;border:1px solid #eceef2;")
+CSS_NAME = "font-size:18px;font-weight:700;line-height:1.45;margin:4px 0 6px;color:#111;"
+CSS_TAG = ("display:inline-block;font-size:12px;padding:1px 8px;border-radius:20px;"
+           "background:#e8f1ff;color:#2b6cb0;margin-right:6px;vertical-align:2px;")
+CSS_ONE = "font-size:17px;font-weight:600;line-height:1.7;margin:8px 0 12px;color:#0f172a;"
+CSS_BODY = "font-size:15.5px;line-height:1.85;color:#33363d;margin:0 0 10px;"
+CSS_META = ("font-size:13px;line-height:1.7;color:#6b7280;background:#fff;"
+            "border:1px dashed #dfe3ea;border-radius:10px;padding:9px 12px;margin:12px 0 0;")
+CSS_BTN = ("display:block;text-align:center;margin:14px 0 0;padding:11px 12px;"
+           "background:#111;color:#fff;text-decoration:none;border-radius:10px;"
+           "font-size:15px;font-weight:600;")
+CSS_SEC = "font-size:13px;font-weight:700;letter-spacing:.06em;color:#8a8f98;margin:0 0 4px;"
+CSS_HR = "border:0;border-top:1px solid #eceef2;margin:28px 0 0;"
+
+
+def esc(s):
+    return html.escape(str(s or ""), quote=True)
+
+
+def nl(s):
+    return esc(s).replace("\n", "<br>")
+
+
+def li(items):
+    return "".join(
+        f'<div style="{CSS_BODY}margin-bottom:6px;">'
+        f'<span style="color:#9aa0aa;">·</span> {esc(x)}</div>'
+        for x in items if str(x).strip())
+
+
+def render_html(issue):
+    picks = issue["picks"]
+    parts = []
+    parts.append(f'<div style="{CSS_WRAP}">')
+    parts.append(f'<div style="{CSS_SEC}">AI 项目雷达 · 第 {issue.get("issue_no",1)} 期'
+                 f' · {esc(issue.get("date",""))}</div>')
+    parts.append(f'<div style="font-size:23px;font-weight:800;line-height:1.4;color:#0b0d12;'
+                 f'margin:6px 0 14px;">{esc(issue["title"])}</div>')
+    if issue.get("hook"):
+        parts.append(f'<div style="font-size:16.5px;line-height:1.8;color:#3b3f47;'
+                     f'margin:0 0 6px;">{esc(issue["hook"])}</div>')
+    if issue.get("intro"):
+        parts.append(f'<div style="font-size:15px;line-height:1.85;color:#6b7280;'
+                     f'margin:10px 0 0;">{esc(issue["intro"])}</div>')
+
+    for i, p in enumerate(picks, 1):
+        parts.append(f'<div style="{CSS_CARD}">')
+        parts.append('<div>'
+                     + (f'<span style="{CSS_TAG}">{esc(p["tag"])}</span>' if p.get("tag") else "")
+                     + (f'<span style="font-size:12px;color:#98a2b3;">{esc(p.get("meta",""))}</span>'
+                        if p.get("meta") else "")
+                     + '</div>')
+        parts.append(f'<div style="{CSS_NAME}">{esc(p.get("emoji",""))} '
+                     f'{i}. {esc(p["name"])}</div>')
+        if p.get("repo"):
+            parts.append(f'<div style="font-size:12.5px;color:#98a2b3;margin:0 0 2px;">'
+                         f'{esc(p["repo"])}</div>')
+        if p.get("one_liner"):
+            parts.append(f'<div style="{CSS_ONE}">{esc(p["one_liner"])}</div>')
+        if p.get("why"):
+            parts.append(f'<div style="{CSS_SEC}">为啥值得看</div>')
+            parts.append(li(p["why"]))
+        if p.get("how"):
+            parts.append(f'<div style="{CSS_SEC}">上手难度</div>')
+            parts.append(f'<div style="{CSS_BODY}">{esc(p["how"])}</div>')
+        if p.get("try_it"):
+            parts.append(f'<div style="{CSS_META}">💡 可以先这么玩：{esc(p["try_it"])}</div>')
+        if p.get("url"):
+            parts.append(f'<a href="{esc(p["url"])}" style="{CSS_BTN}">打开 GitHub 看看 →</a>')
+        parts.append('</div>')
+
+    if issue.get("outro"):
+        parts.append(f'<div style="font-size:15.5px;line-height:1.85;color:#33363d;'
+                     f'margin:26px 0 0;padding:14px 16px;background:#fffbe8;'
+                     f'border-radius:12px;border:1px solid #f6e7a8;">{nl(issue["outro"])}</div>')
+
+    if issue.get("bonus"):
+        parts.append('<div style="margin:30px 0 0;">')
+        parts.append(f'<div style="{CSS_SEC}">顺手扫到的另外几个</div>')
+        for b in issue["bonus"]:
+            parts.append(f'<div style="font-size:14.5px;line-height:1.8;color:#4a4f57;'
+                         f'margin:6px 0 0;padding-left:14px;text-indent:-14px;">'
+                         f'<span style="color:#9aa0aa;">·</span> {esc(b)}</div>')
+        parts.append('</div>')
+
+    parts.append(f'<hr style="{CSS_HR}">')
+    parts.append(f'<div style="font-size:12.5px;line-height:1.8;color:#9aa0aa;margin:14px 0 0;">'
+                 f'{nl(issue.get("footer",""))}</div>')
+    parts.append('</div>')
+    return "".join(parts)
+
+
+def render_md(issue):
+    out = [f'# {issue["title"]}', ""]
+    if issue.get("hook"):
+        out += [issue["hook"], ""]
+    if issue.get("intro"):
+        out += [f'> {issue["intro"]}', ""]
+    for i, p in enumerate(issue["picks"], 1):
+        out.append(f'## {i}. {p.get("emoji","")} {p["name"]}')
+        if p.get("repo"):
+            out.append(f'`{p["repo"]}`' + (f' · {p["meta"]}' if p.get("meta") else ""))
+        out += ["", f'**{p.get("one_liner","")}**', ""]
+        if p.get("why"):
+            out += ["**为啥值得看**", ""] + [f'- {x}' for x in p["why"]] + [""]
+        if p.get("how"):
+            out += [f'**上手难度**：{p["how"]}', ""]
+        if p.get("try_it"):
+            out += [f'> 💡 可以先这么玩：{p["try_it"]}', ""]
+        if p.get("url"):
+            out += [f'[打开 GitHub]({p["url"]})', ""]
+    if issue.get("outro"):
+        out += ["---", "", issue["outro"], ""]
+    if issue.get("bonus"):
+        out += ["### 顺手扫到的另外几个", ""] + [f'- {b}' for b in issue["bonus"]] + [""]
+    out += [f'_{issue.get("footer","")}_']
+    return "\n".join(out)
+
+
+def render_txt(issue):
+    names = " / ".join(p["name"].split("/")[-1] for p in issue["picks"][:3])
+    return f'{issue["title"]}\n本期：{names}'
+
+
+def main():
+    path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "issue.json")
+    issue = json.load(open(path, encoding="utf-8-sig"))
+    os.makedirs(BUILD, exist_ok=True)
+    no = issue.get("issue_no", 1)
+    h = os.path.join(BUILD, f"issue-{no}.html")
+    m = os.path.join(BUILD, f"issue-{no}.md")
+    t = os.path.join(BUILD, f"issue-{no}.txt")
+    open(h, "w", encoding="utf-8").write(render_html(issue))
+    open(m, "w", encoding="utf-8").write(render_md(issue))
+    open(t, "w", encoding="utf-8").write(render_txt(issue))
+    print("HTML:", h)
+    print("MD  :", m)
+    print("TXT :", t)
+    print("标题预览:", render_txt(issue).replace("\n", " | "))
+    print("HTML 体积:", len(open(h, encoding="utf-8").read()), "字符")
+
+
+if __name__ == "__main__":
+    main()
