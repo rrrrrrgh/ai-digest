@@ -60,11 +60,15 @@ def main():
     log("挑项目、组一期…")
     run("build_auto_issue.py", ["--n", n])
 
-    # 3. 渲染
+    # 3. 补中文 + 找配图/演示
+    log("翻成中文、找封面图…")
+    run("enrich.py", ["auto-issue.json"])
+
+    # 4. 渲染
     log("渲染手机版页面…")
     run("render_issue.py", ["auto-issue.json"])
 
-    # 4. 发
+    # 5. 发
     push_args = ["--issue", "auto-issue.json"] + (["--dry"] if dry else [])
     log("发邮件…" if not dry else "（dry：只生成，不发送）")
     rc = run("push.py", push_args, allow_codes=(0, 2))

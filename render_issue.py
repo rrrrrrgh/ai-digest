@@ -79,8 +79,16 @@ def render_html(issue):
         if p.get("repo"):
             parts.append(f'<div style="font-size:12.5px;color:#98a2b3;margin:0 0 2px;">'
                          f'{esc(p["repo"])}</div>')
+        if p.get("cover"):
+            parts.append(f'<img src="{esc(p["cover"])}" alt="{esc(p["name"])}" '
+                         f'style="display:block;width:100%;max-height:280px;'
+                         f'object-fit:cover;object-position:top;border-radius:10px;'
+                         f'margin:12px 0 4px;border:1px solid #e7e9ee;background:#fff;" />')
         if p.get("one_liner"):
             parts.append(f'<div style="{CSS_ONE}">{esc(p["one_liner"])}</div>')
+        if p.get("desc_en"):
+            parts.append(f'<div style="font-size:12.5px;line-height:1.7;color:#9aa0aa;'
+                         f'margin:0 0 6px;">原文：{esc(p["desc_en"])}</div>')
         if p.get("why"):
             parts.append(f'<div style="{CSS_SEC}">为啥值得看</div>')
             parts.append(li(p["why"]))
@@ -89,6 +97,11 @@ def render_html(issue):
             parts.append(f'<div style="{CSS_BODY}">{esc(p["how"])}</div>')
         if p.get("try_it"):
             parts.append(f'<div style="{CSS_META}">💡 可以先这么玩：{esc(p["try_it"])}</div>')
+        if p.get("demo"):
+            parts.append(f'<a href="{esc(p["demo"])}" style="display:block;text-align:center;'
+                         f'margin:14px 0 0;padding:11px 12px;background:#fff;color:#111;'
+                         f'text-decoration:none;border-radius:10px;border:1.5px solid #111;'
+                         f'font-size:15px;font-weight:600;">▶ 看演示</a>')
         if p.get("url"):
             parts.append(f'<a href="{esc(p["url"])}" style="{CSS_BTN}">打开 GitHub 看看 →</a>')
         parts.append('</div>')

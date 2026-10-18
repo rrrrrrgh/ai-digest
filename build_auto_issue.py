@@ -117,8 +117,11 @@ def main():
             "meta": f"★{r['stars']:,} · 约 +{r['stars_per_day']:.0f} 星/天 · "
                     f"{r['language'] or '多语言'} · 建库 {r['created']}",
             "one_liner": clean_desc(r["desc"]),
-            "why": [f"热度：{r['stars']:,} 星，平均每天涨 {r['stars_per_day']:.0f} 星，"
-                    f"仓库 {r['age_days']:.0f} 天大。"],
+            "desc_raw": (r["desc"] or "").strip(),
+            "why": [
+                f"热度：{r['stars']:,} 星，平均每天涨 {r['stars_per_day']:.0f} 星，仓库 {r['age_days']:.0f} 天大。",
+                f"语言 {r['language'] or '多语言'} ｜ Fork {r['forks']:,} ｜ 最近更新 {r['pushed']}",
+            ],
             "how": difficulty_of(r),
             "url": r["url"],
         })
@@ -128,10 +131,10 @@ def main():
         "date": today,
         "push_title": f"速报 · {len(items)} 个正在涨星的 AI 项目（{today[5:]}）",
         "title": f"{len(items)} 个正在涨星的 AI 项目",
-        "hook": "这期是电脑没人看着时自动出的「速报」：不写读后感，只挑正在涨星、"
-                "值得你自己点开看一眼的项目。",
-        "intro": "项目描述保留作者原文（有的本来就是中文），我只负责按热度和新鲜度挑出来。"
-                 "想看带人话翻译的精读版，等你打开电脑叫我一声。",
+        "hook": "这期是电脑没人看着时自动出的「速报」：项目介绍已经翻成中文，配了图和演示，"
+                "但我不吹彩虹屁——想看带梗的精读版，等你打开电脑叫我一声。",
+        "intro": "筛选只看三件事：涨星速度、新鲜度、是不是真能上手。介绍来自项目 README 的翻译整理，"
+                 "原文放在每张卡片下面一行，方便你核对。",
         "picks": items,
         "outro": "速报只解决「不漏」。精读版会解释这东西到底能干嘛、坑在哪、你该不该动手。",
         "footer": f"AI 项目雷达 · 第 {no} 期（自动速报）· {today}",
