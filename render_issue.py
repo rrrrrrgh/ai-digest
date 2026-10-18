@@ -12,7 +12,9 @@
 import html
 import json
 import os
+import re
 import sys
+import urllib.parse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BUILD = os.path.join(HERE, "build")
@@ -36,6 +38,20 @@ CSS_BTN = ("display:block;text-align:center;margin:14px 0 0;padding:11px 12px;"
 CSS_SEC = "font-size:13px;font-weight:700;letter-spacing:.06em;color:#8a8f98;margin:0 0 4px;"
 CSS_HR = "border:0;border-top:1px solid #eceef2;margin:28px 0 0;"
 
+# ---- 收藏（红心）样式：独立 <style>，被剥掉也不影响正文 ----
+FAV_STYLE = """<style>
+.aid-fav{border:1px solid #e3e6ec;background:#fff;color:#8a8f98;border-radius:999px;
+  padding:2px 10px;font-size:13px;line-height:1.5;cursor:pointer;
+  font-family:-apple-system,'PingFang SC',sans-serif;float:right;margin:-2px -2px 0 0;}
+.aid-fav.on{border-color:#ffc9c9;background:#fff5f5;color:#e5484d;}
+.aid-bar{margin:22px 0 0;padding:12px 14px;background:#fff5f5;border:1px solid #ffd9d9;
+  border-radius:12px;font-size:14px;color:#7a3b3b;line-height:1.7;}
+.aid-bar b{color:#e5484d;}
+.aid-chip{display:inline-block;margin:4px 6px 0 0;padding:2px 9px;border-radius:999px;
+  background:#fff;border:1px solid #ffd9d9;font-size:13px;color:#a13d3d;text-decoration:none;}
+</style>"""
+
+
 
 def esc(s):
     return html.escape(str(s or ""), quote=True)
@@ -52,14 +68,60 @@ def li(items):
         for x in items if str(x).strip())
 
 
+def fav_config():
+    """收藏配置：Worker 模式（fav_base+fav_key）或 GitHub issue 模式（fav_repo）。"""
+    base = os.environ.get("FAV_BASE", "").strip()
+    key = os.environ.get("FAV_KEY", "").strip()
+    frepo = os.environ.get("FAV_REPO", "").strip()
+    ch = os.path.join(HERE, "channels.json")
+    if os.path.exists(ch):
+        try:
+            cfg = json.load(open(ch, encoding="utf-8-sig"))
+            base = base or (cfg.get("fav_base") or "").strip()
+            key = key or (cfg.get("fav_key") or "").strip()
+            frepo = frepo or (cfg.get("fav_repo") or "").strip()
+        except Exception:
+            pass
+    return base.rstrip("/"), key, frepo
+
+
+def fav_list_url():
+    base, key, frepo = fav_config()
+    if frepo:
+        q = urllib.parse.quote("is:issue [收藏]")
+        return f"https://github.com/{frepo}/issues?q={q}"
+    if base and key:
+        return f"{base}/l/{key}"
+    return "#"
+
+
 def render_html(issue):
     picks = issue["picks"]
+    FB, FK, FREPO = fav_config()
+    fav_on = bool(FREPO) or bool(FB and FK)
+
+    def fav_link(item):
+        repo = (item.get("repo") or "").strip()
+        if not repo:
+            return "#"
+        if FREPO:
+            title = urllib.parse.quote(f"[收藏] {repo}")
+            body = urllib.parse.quote(
+                f"{item.get('one_liner') or ''}\n\n{item.get('url') or ''}\n\n"
+                "（从微信推送里点爱心自动建的，用来攒收藏清单）")
+            return (f"https://github.com/{FREPO}/issues/new"
+                    f"?title={title}&body={body}")
+        name = urllib.parse.quote((item.get("name") or "")[:30])
+        one = urllib.parse.quote((item.get("one_liner") or "")[:60])
+        return f"{FB}/a/{FK}/{urllib.parse.quote(repo)}?n={name}&o={one}"
+
     parts = []
+    parts.append(FAV_STYLE)
     parts.append(f'<div style="{CSS_WRAP}">')
-    parts.append(f'<div style="{CSS_SEC}">AI 项目雷达 · 第 {issue.get("issue_no",1)} 期'
-                 f' · {esc(issue.get("date",""))}'
-                 + ("· 文案：机器翻译" if issue.get("copy_mode") == "mt" else
-                    "· 文案：AI 润色" if issue.get("copy_mode") == "llm" else "")
+    badge = ("机翻" if issue.get("copy_mode") == "mt" else
+             "AI 润色" if issue.get("copy_mode") == "llm" else "")
+    parts.append(f'<div style="{CSS_SEC}">第 {issue.get("issue_no",1)} 期 · '
+                 f'{esc(issue.get("date",""))}' + (f' · {badge}' if badge else '')
                  + '</div>')
     parts.append(f'<div style="font-size:23px;font-weight:800;line-height:1.4;color:#0b0d12;'
                  f'margin:6px 0 14px;">{esc(issue["title"])}</div>')
@@ -70,9 +132,28 @@ def render_html(issue):
         parts.append(f'<div style="font-size:15px;line-height:1.85;color:#6b7280;'
                      f'margin:10px 0 0;">{esc(issue["intro"])}</div>')
 
+    if len(picks) > 1:
+        parts.append('<div style="margin:18px 0 0;padding:13px 15px;background:#f2f5fa;'
+                     'border-radius:12px;">')
+        parts.append(f'<div style="{CSS_SEC}">本期速览 · 点一句直接跳</div>')
+        for i, q in enumerate(picks, 1):
+            short = re.sub(r'\s+', ' ', (q.get("one_liner") or ""))[:26]
+            parts.append(f'<a href="#p{i}" style="display:block;padding:5px 0;'
+                         f'font-size:14.5px;line-height:1.65;color:#22262e;'
+                         f'text-decoration:none;"><span style="color:#98a2b3;">{i}.</span> '
+                         f'{esc(q["name"])} — {esc(short)}…</a>')
+        parts.append('</div>')
+
+    if fav_on:
+        parts.append(f'<a href="{esc(fav_list_url())}" style="display:inline-block;'
+                     f'margin:14px 0 0;font-size:13.5px;color:#e5484d;'
+                     f'text-decoration:none;">&#9829; 我的收藏清单</a>')
+
     for i, p in enumerate(picks, 1):
-        parts.append(f'<div style="{CSS_CARD}">')
+        parts.append(f'<div id="p{i}" style="{CSS_CARD}">')
         parts.append('<div>'
+                     + (f'<a class="aid-fav" style="text-decoration:none;" href="{esc(fav_link(p))}">'
+                        f'&#9825; 收藏</a>' if fav_on else "")
                      + (f'<span style="{CSS_TAG}">{esc(p["tag"])}</span>' if p.get("tag") else "")
                      + (f'<span style="font-size:12px;color:#98a2b3;">{esc(p.get("meta",""))}</span>'
                         if p.get("meta") else "")
@@ -124,6 +205,34 @@ def render_html(issue):
             parts.append(f'<div style="font-size:14.5px;line-height:1.8;color:#4a4f57;'
                          f'margin:6px 0 0;padding-left:14px;text-indent:-14px;">'
                          f'<span style="color:#9aa0aa;">·</span> {esc(b)}</div>')
+        parts.append('</div>')
+
+    if fav_on:
+        parts.append(f'<div style="margin:26px 0 0;padding:13px 15px;background:#fff5f5;'
+                     f'border:1px solid #ffd9d9;border-radius:12px;font-size:14px;'
+                     f'line-height:1.75;color:#7a3b3b;">')
+        parts.append('<div style="font-weight:700;color:#e5484d;font-size:15px;margin:0 0 4px;">'
+                     '&#9829; 想留着以后看的，点卡片右上角的爱心</div>')
+        if FREPO:
+            parts.append('<div style="font-size:13px;color:#a56b6b;">点一下会打开 GitHub 的'
+                         '「新建 issue」页面，标题已经填好，按一下 <b>Submit new issue</b> 就存下了。'
+                         '攒多了回去一眼能翻到。</div>')
+        else:
+            parts.append('<div style="font-size:13px;color:#a56b6b;">点一下会跳到「已收藏」小页面，'
+                         '返回就继续读。收藏存在云端，跨期累积、换手机也不丢。</div>')
+        parts.append(f'<a href="{esc(fav_list_url())}" style="display:inline-block;margin:10px 0 0;'
+                     f'padding:8px 16px;border-radius:8px;background:#e5484d;color:#fff;'
+                     f'text-decoration:none;font-size:14px;font-weight:600;">看我的收藏清单</a>')
+        parts.append('</div>')
+    else:
+        parts.append(f'<div style="margin:26px 0 0;padding:13px 15px;background:#f7f8fa;'
+                     f'border:1px dashed #dfe3ea;border-radius:12px;font-size:13.5px;'
+                     f'line-height:1.8;color:#5b6270;">')
+        parts.append('<div style="font-weight:700;color:#3b3f47;margin:0 0 6px;">本期清单'
+                     '（长按可复制）</div>')
+        for i, q in enumerate(picks, 1):
+            parts.append(f'<div>{i}. {esc(q.get("repo",""))} — '
+                         f'{esc((q.get("one_liner") or "")[:40])}</div>')
         parts.append('</div>')
 
     parts.append(f'<hr style="{CSS_HR}">')

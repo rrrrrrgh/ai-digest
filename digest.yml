@@ -35,6 +35,9 @@ jobs:
         env:
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          FAV_BASE: ${{ secrets.FAV_BASE }}
+          FAV_KEY: ${{ secrets.FAV_KEY }}
+          FAV_REPO: ${{ secrets.FAV_REPO }}
           MAIL_HOST: ${{ secrets.MAIL_HOST }}
           MAIL_PORT: ${{ secrets.MAIL_PORT }}
           MAIL_USER: ${{ secrets.MAIL_USER }}

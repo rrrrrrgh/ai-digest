@@ -65,6 +65,24 @@ def difficulty_of(repo):
     return "；".join(dict.fromkeys(hits[:2]))
 
 
+def human_num(n):
+    n = int(n or 0)
+    if n >= 10000:
+        return f"{n/10000:.1f}万"
+    if n >= 1000:
+        return f"{n/1000:.1f}k"
+    return str(n)
+
+
+def human_age(days):
+    d = float(days or 0)
+    if d >= 60:
+        return f"{d/30:.0f} 个月"
+    if d >= 14:
+        return f"{d/7:.0f} 周"
+    return f"{d:.0f} 天"
+
+
 def clean_desc(d):
     d = re.sub(r"\s+", " ", (d or "")).strip()
     if len(d) > 240:
@@ -105,8 +123,11 @@ def main():
         print("候选都推过了，这期跳过。")
         return 0
 
-    no = int(st.get("last_issue") or 0) + 1
     today = time.strftime("%Y-%m-%d")
+    same_day = (st.get("last_sent") or "").startswith(today)
+    no = int(st.get("last_issue") or 0) + (0 if same_day else 1)
+    if no < 1:
+        no = 1
     items = []
     for r in picks:
         items.append({
@@ -114,8 +135,8 @@ def main():
             "name": r["full_name"].split("/")[-1],
             "repo": r["full_name"],
             "tag": label_of(r),
-            "meta": f"★{r['stars']:,} · 约 +{r['stars_per_day']:.0f} 星/天 · "
-                    f"{r['language'] or '多语言'} · 建库 {r['created']}",
+            "meta": f"★{human_num(r['stars'])} · +{r['stars_per_day']:.0f}/天 · "
+                    f"{r['language'] or '多语言'} · {human_age(r['age_days'])}龄",
             "one_liner": clean_desc(r["desc"]),
             "desc_raw": (r["desc"] or "").strip(),
             "stars": r["stars"], "stars_per_day": r["stars_per_day"],

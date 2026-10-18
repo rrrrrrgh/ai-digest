@@ -256,16 +256,18 @@ def llm_polish(repo, readme_brief):
     prompt = (
         "你在给一个爱刷短视频、不懂技术的普通用户写 GitHub 项目推荐，语气像给朋友发微信介绍新玩具。\n"
         "硬要求：全中文（专有名词保留英文）；不用『旨在/致力于/赋能/一站式/生态』；"
-        "不编造材料里没有的功能；每条短句；可以有比喻，别油。\n\n"
+        "不编造材料里没有的功能；每条短句；可以有比喻，别油。\n"
+        "分工很重要：detail 只讲「这是什么、解决什么问题、大概怎么用」，**不要讲优点**；"
+        "why 只讲「为什么现在值得看」，比如趋势、和同类比的不同、适合谁、有什么风险，**不要复述 detail**。\n\n"
         f"项目：{repo['full_name']}\n"
         f"官方描述：{repo.get('desc') or '(无)'}\n"
         f"语言：{repo.get('language')}｜星数：{repo.get('stars')}｜涨星：约 {repo.get('stars_per_day')}/天\n"
         f"README 摘录：{readme_brief[:1600]}\n\n"
         "输出 JSON，四个字段：\n"
         '{"one_liner":"一句话说清这是什么，40 字内，可带比喻",'
-        '"detail":"它到底在干嘛：3 句话、80~140 字，讲清「解决什么问题 + 怎么用 + 和同类比特别在哪」，'
+        '"detail":"它到底在干嘛：3 句话、80~140 字，讲清「解决什么问题 + 怎么用 + 使用门槛」，'
         '读完要让完全没听过这个领域的人也能明白",'
-        '"why":["三条值得看的理由，每条 35 字内，要具体，不要空话"],'
+        '"why":["三条为什么现在值得看，每条 35 字内，要具体，不要空话"],'
         '"try_it":"一个可以立刻上手的土办法，50 字内"}'
     )
     payload = {
@@ -320,6 +322,45 @@ def llm_polish(repo, readme_brief):
 
 
 # ---------------------------------------------------------------- 主流程
+
+
+def llm_title(picks):
+    """让模型给这一期起个钩子标题（20 字内）。失败就不改。"""
+    key = os.environ.get("LLM_API_KEY", "").strip()
+    if not key:
+        return None
+    base = (os.environ.get("LLM_BASE_URL") or "https://api.deepseek.com").rstrip("/")
+    model = os.environ.get("LLM_MODEL") or "deepseek-flash"
+    lines = "\n".join(f"- {p.get('name')}：{p.get('one_liner')}" for p in picks)
+    prompt = (
+        "给一期「GitHub 上最近在涨星的 AI 项目」推送起一个标题。\n"
+        "要求：20 字以内；像跟朋友说话；有一点点钩子但别标题党；"
+        "不要出现『速报/盘点/第N期/合集』；不要书名号；感叹号最多一个。\n"
+        "只输出标题本身，不要引号、不要解释。\n\n" + lines
+    )
+    try:
+        req = urllib.request.Request(
+            base + "/chat/completions",
+            data=json.dumps({
+                "model": model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 1.0,
+                "max_tokens": 80,
+                **({"thinking": {"type": "disabled"}} if "deepseek.com" in base else {}),
+            }).encode("utf-8"),
+            headers={"Content-Type": "application/json",
+                     "Authorization": "Bearer " + key})
+        with urllib.request.urlopen(req, timeout=45) as r:
+            res = json.loads(r.read().decode("utf-8", "replace"))
+        t = (res["choices"][0]["message"].get("content") or "").strip()
+        t = t.strip("\"'“”‘’ \n")
+        t = t.splitlines()[0].strip()
+        if 6 <= len(t) <= 30:
+            print(f"   · 标题：{t}")
+            return t
+    except Exception as e:
+        print(f"   ! 起标题失败（{type(e).__name__}）")
+    return None
 
 
 def enrich_issue(path):
@@ -390,6 +431,12 @@ def enrich_issue(path):
         if text.get("try_it") and has_cjk(text["try_it"]):
             p["try_it"] = text["try_it"]
         p["how"] = p.get("how") or "看 README 照着装"
+
+    if use_llm and mode == "llm" and len(issue.get("picks") or []) >= 2:
+        t = llm_title(issue["picks"])
+        if t:
+            issue["push_title"] = t
+            issue["title"] = t
 
     issue["copy_mode"] = mode
     json.dump(issue, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
