@@ -1,42 +1,42 @@
-# Mac刘海上多了个盯AI写代码的小跟班
+# AI 最近在涨星，这两个项目有点东西
 
 这期是电脑没人看着时自动出的「速报」：项目介绍已经翻成中文，配了图和演示，但我不吹彩虹屁——想看带梗的精读版，等你打开电脑叫我一声。
 
 > 筛选只看三件事：涨星速度、新鲜度、是不是真能上手。介绍来自项目 README 的翻译整理，原文放在每张卡片下面一行，方便你核对。
 
-## 1. 🔭 coucou
-`Louis-CFM/coucou` · ★5.5k · +266/天 · Swift · 3 周龄
+## 1. 🔭 answer-me-with-html
+`QingYunA/answer-me-with-html` · ★3.7k · +227/天 · JavaScript · 2 周龄
 
-**Mac刘海上的小跟班，帮你盯着AI写代码的进度。**
-
-**为啥值得看**
-
-- AI编程工具爆发，多任务同时跑成常态，缺个统一看板。
-- 同类刘海陪伴产品大多只秀图不开放，这个MIT开源可改。
-- 适合同时用Claude Code、Cursor的开发者，但需Mac新系统。
-
-**上手难度**：要装 App，手机端折腾；要 Mac
-
-> 💡 可以先这么玩：去GitHub Releases下个dmg，拖进Applications，打开后点刘海图标试试。
-
-[打开 GitHub](https://github.com/Louis-CFM/coucou)
-
-## 2. 🔭 ZCode
-`zai-org/ZCode` · ★7.9k · +283/天 · TypeScript · 4 周龄
-
-**一个开箱即用的 AI 编程工作台，像给代码配了个随身助手**
+**让 AI 把复杂答案写成一张能读的网页，而不是一大段文字**
 
 **为啥值得看**
 
-- 一周涨了近两千星，热度很猛
-- 桌面、网页、终端三种形态都有，比单一工具更全
-- 更新频繁，版本迭代快，说明还在活跃开发
+- 模型只写约八分之一的 token，等答案的时间明显变短
+- 和直接让 AI 手写 HTML 比，输出更稳，内容不会被代码淹没
+- 适合常被长文轰炸的人，但要先会装 Agent skill，有门槛
 
 **上手难度**：装个 Node 就能跑
 
-> 💡 可以先这么玩：装好后在终端敲 zcode 进 TUI，或加 --web 开浏览器界面，先随便问它一个代码问题试试。
+> 💡 可以先这么玩：先拿一个你最近没看懂的长答案，装好后原样再问一遍，对比生成的那页 HTML 好不好读。
 
-[打开 GitHub](https://github.com/zai-org/ZCode)
+[打开 GitHub](https://github.com/QingYunA/answer-me-with-html)
+
+## 2. 🔭 crm
+`trycompai/crm` · ★1.1万 · +145/天 · TypeScript · 3 个月龄
+
+**一个让 AI 自己干活的 CRM，像给业务员配了个不用催的实习生**
+
+**为啥值得看**
+
+- AI Agent 正从聊天框走向真干活，这个方向刚起步
+- 和传统 CRM 加聊天框不同，它是让 Agent 当主角
+- 适合想研究 Agent 落地的人，但部署和调教有门槛
+
+**上手难度**：装个 Node 就能跑
+
+> 💡 可以先这么玩：先去 GitHub 看它的部署说明，本地用 Docker 起一个，接上你的模型 Key 试跑。
+
+[打开 GitHub](https://github.com/trycompai/crm)
 
 ---
 
