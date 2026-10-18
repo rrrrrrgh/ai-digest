@@ -1,11 +1,15 @@
 {
- "last_issue": 1,
- "last_sent": "2026-10-18 13:31",
+ "last_issue": 2,
+ "last_sent": "2026-10-18 15:53",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
   "Edge0-AI/Edge0",
   "KKKKhazix/AIHOT",
-  "rehan-remade/universal-modder"
+  "rehan-remade/universal-modder",
+  "deepseek-ai/deepseek-harness",
+  "yetone/magpie",
+  "jub0t/Concat",
+  "tangency-labs/solidcraft"
  ]
 }
