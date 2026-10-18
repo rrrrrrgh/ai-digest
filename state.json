@@ -1,6 +1,6 @@
 {
  "last_issue": 5,
- "last_sent": "2026-10-18 18:42",
+ "last_sent": "2026-10-18 19:51",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -22,6 +22,8 @@
   "lexmount/moli",
   "langchain-ai/openwiki",
   "feder-cr/invisible_playwright_mcp",
-  "totec448-spec/chat-on-steroids"
+  "totec448-spec/chat-on-steroids",
+  "Louis-CFM/coucou",
+  "zai-org/ZCode"
  ]
 }

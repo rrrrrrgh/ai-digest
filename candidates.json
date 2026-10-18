@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-18T10:41:16+00:00",
+ "generated_at": "2026-10-18T11:51:26+00:00",
  "window_days": 120,
  "count": 36,
  "repos": [
@@ -7,8 +7,8 @@
    "full_name": "Ebony-Vinyl/dsh-our-free-model",
    "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model",
    "desc": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
-   "stars": 23454,
-   "stars_per_day": 986.8,
+   "stars": 23651,
+   "stars_per_day": 993.1,
    "created": "2026-09-24",
    "age_days": 23.8,
    "pushed": "2026-10-18",
@@ -25,18 +25,18 @@
     "model-provider",
     "openai-compatible"
    ],
-   "forks": 503,
+   "forks": 507,
    "homepage": "",
-   "score": 160.73
+   "score": 160.84
   },
   {
    "full_name": "deepseek-ai/deepseek-harness",
    "url": "https://github.com/deepseek-ai/deepseek-harness",
    "desc": "DeepSeek Harness: Everything is a Plugin.",
-   "stars": 252649,
-   "stars_per_day": 3831.0,
+   "stars": 252722,
+   "stars_per_day": 3829.3,
    "created": "2026-08-13",
-   "age_days": 65.9,
+   "age_days": 66.0,
    "pushed": "2026-10-17",
    "language": "TypeScript",
    "topics": [
@@ -45,16 +45,16 @@
     "dsh",
     "dsh-plugin"
    ],
-   "forks": 30394,
+   "forks": 30400,
    "homepage": "https://deepseek.com/harness",
-   "score": 158.84
+   "score": 158.83
   },
   {
    "full_name": "yetone/magpie",
    "url": "https://github.com/yetone/magpie",
    "desc": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
-   "stars": 15481,
-   "stars_per_day": 625.2,
+   "stars": 15514,
+   "stars_per_day": 625.3,
    "created": "2026-09-23",
    "age_days": 24.8,
    "pushed": "2026-10-18",
@@ -67,16 +67,16 @@
     "llm",
     "macos"
    ],
-   "forks": 1110,
+   "forks": 1114,
    "homepage": "https://usemagpie.ai",
-   "score": 128.1
+   "score": 128.11
   },
   {
    "full_name": "jub0t/Concat",
    "url": "https://github.com/jub0t/Concat",
    "desc": "The truly free, open-source, local-first, cross-platform CapCut replacement. Scriptable through a JSON-RPC API & MCP.",
-   "stars": 8592,
-   "stars_per_day": 160.1,
+   "stars": 8642,
+   "stars_per_day": 160.9,
    "created": "2026-08-25",
    "age_days": 53.7,
    "pushed": "2026-10-18",
@@ -98,16 +98,16 @@
     "youtube-automation",
     "youtube-shorts"
    ],
-   "forks": 1011,
+   "forks": 1018,
    "homepage": "https://concat.standalones.org",
-   "score": 124.32
+   "score": 124.41
   },
   {
    "full_name": "tangency-labs/solidcraft",
    "url": "https://github.com/tangency-labs/solidcraft",
    "desc": "SolidCraft: an open-source parametric 3D CAD application built in pure Rust. Desktop, web, and automation through MCP.",
-   "stars": 4676,
-   "stars_per_day": 438.8,
+   "stars": 4738,
+   "stars_per_day": 442.6,
    "created": "2026-10-07",
    "age_days": 10.7,
    "pushed": "2026-10-18",
@@ -123,18 +123,18 @@
     "step",
     "wasm"
    ],
-   "forks": 561,
+   "forks": 569,
    "homepage": "solidcraft.io",
-   "score": 120.56
+   "score": 120.72
   },
   {
    "full_name": "rehan-remade/universal-modder",
    "url": "https://github.com/rehan-remade/universal-modder",
    "desc": "Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: recon, reverse engineering, fal-generated art/3D/audio, in-game testing, showcase videos.",
-   "stars": 8285,
-   "stars_per_day": 454.3,
+   "stars": 8292,
+   "stars_per_day": 453.5,
    "created": "2026-09-30",
-   "age_days": 18.2,
+   "age_days": 18.3,
    "pushed": "2026-10-18",
    "language": "Python",
    "topics": [
@@ -151,14 +151,14 @@
    ],
    "forks": 903,
    "homepage": "",
-   "score": 118.76
+   "score": 118.74
   },
   {
    "full_name": "guillaumemeyer/watermarks-remover",
    "url": "https://github.com/guillaumemeyer/watermarks-remover",
    "desc": "A privacy-first app that strips AI watermarks from content you own.",
-   "stars": 24342,
-   "stars_per_day": 359.3,
+   "stars": 24349,
+   "stars_per_day": 359.1,
    "created": "2026-08-11",
    "age_days": 67.8,
    "pushed": "2026-10-17",
@@ -180,18 +180,18 @@
     "watermarking",
     "watermarks"
    ],
-   "forks": 2791,
+   "forks": 2792,
    "homepage": "https://github.com/guillaumemeyer/watermarks-remover",
-   "score": 118.72
+   "score": 118.71
   },
   {
    "full_name": "genspark-ai/genoffice",
    "url": "https://github.com/genspark-ai/genoffice",
    "desc": "Free, open-source AI Office suite: Docs, Sheets, Slides, PDF, Markdown and HTML editors with a built-in AI agent, plus a `genoffice` CLI and agent skill so Claude Code, Codex and Cursor can create and edit real .docx/.xlsx/.pptx files locally. Bring your own key. macOS, Windows & Linux.",
-   "stars": 9925,
-   "stars_per_day": 125.6,
+   "stars": 9927,
+   "stars_per_day": 125.5,
    "created": "2026-07-31",
-   "age_days": 79.0,
+   "age_days": 79.1,
    "pushed": "2026-10-18",
    "language": "TypeScript",
    "topics": [
@@ -218,14 +218,14 @@
    ],
    "forks": 1265,
    "homepage": "https://genoffice.ai/",
-   "score": 118.38
+   "score": 118.37
   },
   {
    "full_name": "KKKKhazix/AIHOT",
    "url": "https://github.com/KKKKhazix/AIHOT",
    "desc": "一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
-   "stars": 7983,
-   "stars_per_day": 410.2,
+   "stars": 7989,
+   "stars_per_day": 409.5,
    "created": "2026-09-28",
    "age_days": 19.5,
    "pushed": "2026-10-17",
@@ -244,18 +244,18 @@
     "self-hosted",
     "typescript"
    ],
-   "forks": 1937,
+   "forks": 1938,
    "homepage": "https://aihot.news",
-   "score": 117.22
+   "score": 117.2
   },
   {
    "full_name": "Arekejoker/qwen21-nsfw-pose-skill",
    "url": "https://github.com/Arekejoker/qwen21-nsfw-pose-skill",
    "desc": "Qwen-Image 2.1 NSFW/姿势出图 skill：作者级提示词配方 + NSFW LoRA + 136 姿势 VNCCS 人偶控制；适用 Claude Code / Codex / Cursor / OpenClaw",
-   "stars": 2688,
-   "stars_per_day": 505.9,
+   "stars": 2695,
+   "stars_per_day": 502.6,
    "created": "2026-10-13",
-   "age_days": 5.3,
+   "age_days": 5.4,
    "pushed": "2026-10-17",
    "language": "Python",
    "topics": [
@@ -266,18 +266,18 @@
     "pose-control",
     "qwen-image"
    ],
-   "forks": 515,
+   "forks": 516,
    "homepage": "",
-   "score": 116.89
+   "score": 116.8
   },
   {
    "full_name": "onehumanbeing/esp32-iphone-agent",
    "url": "https://github.com/onehumanbeing/esp32-iphone-agent",
    "desc": "Let an AI model use a real iPhone with a $7 ESP32: AirPlay eyes, USB HID hands, any OpenAI-compatible vision model. No Mac, no developer account, no jailbreak.",
-   "stars": 3049,
-   "stars_per_day": 458.7,
+   "stars": 3055,
+   "stars_per_day": 456.3,
    "created": "2026-10-11",
-   "age_days": 6.6,
+   "age_days": 6.7,
    "pushed": "2026-10-18",
    "language": "C",
    "topics": [
@@ -291,16 +291,16 @@
     "llm",
     "usb-hid"
    ],
-   "forks": 392,
+   "forks": 393,
    "homepage": "",
-   "score": 115.9
+   "score": 115.83
   },
   {
    "full_name": "dataelement/dsh-desktop",
    "url": "https://github.com/dataelement/dsh-desktop",
    "desc": "DSHDesktop：DeepSeek Harness Desktop / DeepSeek Harness 桌面版",
-   "stars": 15102,
-   "stars_per_day": 229.3,
+   "stars": 15138,
+   "stars_per_day": 229.6,
    "created": "2026-08-13",
    "age_days": 65.9,
    "pushed": "2026-10-16",
@@ -318,16 +318,16 @@
     "dshdesktop",
     "harness"
    ],
-   "forks": 516,
+   "forks": 517,
    "homepage": "https://dshdesktop.com",
-   "score": 115.02
+   "score": 115.05
   },
   {
    "full_name": "lexmount/moli",
    "url": "https://github.com/lexmount/moli",
    "desc": "Best headless browser for AI agents. Lite, Fast, High-Compatibility. Built in Rust",
-   "stars": 19365,
-   "stars_per_day": 281.1,
+   "stars": 19382,
+   "stars_per_day": 281.2,
    "created": "2026-08-10",
    "age_days": 68.9,
    "pushed": "2026-10-18",
@@ -356,10 +356,10 @@
    "full_name": "Louis-CFM/coucou",
    "url": "https://github.com/Louis-CFM/coucou",
    "desc": "A tiny friend in your Mac's notch and on your iPhone that keeps an eye on your AI coding agents: Claude Code, Codex, Cursor, Gemini CLI, Antigravity and more. Approve from the notch or your Lock Screen.",
-   "stars": 5472,
-   "stars_per_day": 266.5,
+   "stars": 5477,
+   "stars_per_day": 266.1,
    "created": "2026-09-27",
-   "age_days": 20.5,
+   "age_days": 20.6,
    "pushed": "2026-10-17",
    "language": "Swift",
    "topics": [
@@ -384,16 +384,16 @@
     "swiftui",
     "windows"
    ],
-   "forks": 955,
+   "forks": 957,
    "homepage": "https://louis-cfm.github.io/coucou/",
-   "score": 113.07
+   "score": 113.05
   },
   {
    "full_name": "miuuyy/codex-chatgpt-web",
    "url": "https://github.com/miuuyy/codex-chatgpt-web",
    "desc": "Use ChatGPT Web (including Pro) as a native model in Codex — with context, tools, streaming and images, without using Codex quota.",
-   "stars": 14514,
-   "stars_per_day": 173.0,
+   "stars": 14515,
+   "stars_per_day": 172.9,
    "created": "2026-07-26",
    "age_days": 83.9,
    "pushed": "2026-10-17",
@@ -419,9 +419,9 @@
    "url": "https://github.com/LosaLosSantos/aurelio-finance",
    "desc": "Open-source personal finance app with an AI financial advisor: track your net worth, investments, ETFs, cash and debts on your own computer.",
    "stars": 3953,
-   "stars_per_day": 340.7,
+   "stars_per_day": 339.3,
    "created": "2026-10-06",
-   "age_days": 11.6,
+   "age_days": 11.7,
    "pushed": "2026-10-17",
    "language": "Python",
    "topics": [
@@ -440,16 +440,16 @@
     "stocks",
     "wealth-management"
    ],
-   "forks": 499,
+   "forks": 500,
    "homepage": "",
-   "score": 112.52
+   "score": 112.46
   },
   {
    "full_name": "jev-chat/jev-chat-jarvis",
    "url": "https://github.com/jev-chat/jev-chat-jarvis",
    "desc": "The chat decision assistant: before you reply, Jev reads the chat, judges intent and risk, and drafts replies you fill in with one tap. You press send. Android · Windows · macOS · iOS | 聊天辅助决策工具：先看懂对方再回复，发不发由你。",
-   "stars": 7873,
-   "stars_per_day": 291.8,
+   "stars": 7875,
+   "stars_per_day": 291.4,
    "created": "2026-09-21",
    "age_days": 27.0,
    "pushed": "2026-10-16",
@@ -467,31 +467,31 @@
    ],
    "forks": 1276,
    "homepage": "https://chatjevs.com",
-   "score": 112.43
+   "score": 112.41
   },
   {
    "full_name": "CopilotKit/OpenDots",
    "url": "https://github.com/CopilotKit/OpenDots",
    "desc": "Your always-on AI coworkers that move between text, calls, and Slack.",
-   "stars": 5544,
-   "stars_per_day": 296.0,
+   "stars": 5547,
+   "stars_per_day": 295.4,
    "created": "2026-09-29",
-   "age_days": 18.7,
+   "age_days": 18.8,
    "pushed": "2026-10-15",
    "language": "TypeScript",
    "topics": [],
    "forks": 797,
    "homepage": "https://www.copilotkit.ai/opendots",
-   "score": 111.58
+   "score": 111.55
   },
   {
    "full_name": "tigerless-labs/agent-memory",
    "url": "https://github.com/tigerless-labs/agent-memory",
    "desc": "Long-term memory runtime for AI agents — plain Markdown as the source of truth, local ranked retrieval, and an independent sleep-time Manage layer. Claude Code and Codex share one store. No API key.",
-   "stars": 4206,
-   "stars_per_day": 90.4,
+   "stars": 4221,
+   "stars_per_day": 90.6,
    "created": "2026-09-01",
-   "age_days": 46.5,
+   "age_days": 46.6,
    "pushed": "2026-10-16",
    "language": "Python",
    "topics": [
@@ -510,16 +510,16 @@
    ],
    "forks": 181,
    "homepage": "",
-   "score": 110.24
+   "score": 110.29
   },
   {
    "full_name": "QingYunA/answer-me-with-html",
    "url": "https://github.com/QingYunA/answer-me-with-html",
    "desc": "Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。",
-   "stars": 3654,
+   "stars": 3665,
    "stars_per_day": 227.9,
    "created": "2026-10-02",
-   "age_days": 16.0,
+   "age_days": 16.1,
    "pushed": "2026-10-18",
    "language": "JavaScript",
    "topics": [
@@ -539,14 +539,14 @@
    ],
    "forks": 254,
    "homepage": "https://answer-me-with-html.com/",
-   "score": 109.68
+   "score": 109.69
   },
   {
    "full_name": "hypit-ai/hypit",
    "url": "https://github.com/hypit-ai/hypit",
    "desc": "Clone any viral video with AI agents. Not just a script, the whole workflow: swap the face, the words, the B-roll, ship 100 variants in one command, and get your 100M views.",
-   "stars": 23309,
-   "stars_per_day": 289.0,
+   "stars": 23330,
+   "stars_per_day": 289.1,
    "created": "2026-07-29",
    "age_days": 80.7,
    "pushed": "2026-10-15",
@@ -573,7 +573,7 @@
     "video-editing",
     "video-generation"
    ],
-   "forks": 2718,
+   "forks": 2719,
    "homepage": "https://hypit.ai",
    "score": 109.55
   },
@@ -582,7 +582,7 @@
    "url": "https://github.com/langchain-ai/openwiki",
    "desc": "OpenWiki is a CLI that writes and maintains agent documentation for your codebase.",
    "stars": 17243,
-   "stars_per_day": 146.8,
+   "stars_per_day": 146.7,
    "created": "2026-06-22",
    "age_days": 117.5,
    "pushed": "2026-10-18",
@@ -590,14 +590,14 @@
    "topics": [],
    "forks": 1266,
    "homepage": "",
-   "score": 108.21
+   "score": 108.2
   },
   {
    "full_name": "shader-effects-inc/shaders",
    "url": "https://github.com/shader-effects-inc/shaders",
    "desc": "WebGPU components for React, Vue, Svelte, Solid, JS & Framer",
-   "stars": 5018,
-   "stars_per_day": 267.6,
+   "stars": 5023,
+   "stars_per_day": 267.2,
    "created": "2026-09-29",
    "age_days": 18.8,
    "pushed": "2026-10-09",
@@ -615,16 +615,16 @@
    ],
    "forks": 218,
    "homepage": "https://shaders.com",
-   "score": 106.87
+   "score": 106.85
   },
   {
    "full_name": "leemysw/yovoice",
    "url": "https://github.com/leemysw/yovoice",
    "desc": "Open-source local AI audio & music studio for macOS & Windows. TTS, voice cloning, songs with lyrics, and multi-track scores — 100% offline, zero API fees.",
-   "stars": 1638,
+   "stars": 1641,
    "stars_per_day": 49.9,
    "created": "2026-09-15",
-   "age_days": 32.8,
+   "age_days": 32.9,
    "pushed": "2026-10-18",
    "language": "TypeScript",
    "topics": [
@@ -647,31 +647,31 @@
    ],
    "forks": 125,
    "homepage": "https://yovoice.leemysw.com",
-   "score": 106.23
+   "score": 106.24
   },
   {
    "full_name": "zai-org/ZCode",
    "url": "https://github.com/zai-org/ZCode",
    "desc": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
-   "stars": 7921,
-   "stars_per_day": 283.5,
+   "stars": 7925,
+   "stars_per_day": 283.1,
    "created": "2026-09-20",
-   "age_days": 27.9,
+   "age_days": 28.0,
    "pushed": "2026-10-10",
    "language": "TypeScript",
    "topics": [],
-   "forks": 2442,
+   "forks": 2443,
    "homepage": "https://zcode.z.ai/",
-   "score": 106.04
+   "score": 106.02
   },
   {
    "full_name": "TencentCloud/Octop",
    "url": "https://github.com/TencentCloud/Octop",
    "desc": "A smarter, self-hosted AI assistant — multi-user, multi-agent.",
-   "stars": 9832,
+   "stars": 9838,
    "stars_per_day": 96.5,
    "created": "2026-07-08",
-   "age_days": 101.9,
+   "age_days": 102.0,
    "pushed": "2026-10-18",
    "language": "Python",
    "topics": [
@@ -683,7 +683,7 @@
     "local-first",
     "long-term-memory"
    ],
-   "forks": 1261,
+   "forks": 1264,
    "homepage": "https://octop.cloud",
    "score": 105.7
   },
@@ -691,10 +691,10 @@
    "full_name": "Jakeschincariol/replica-skill",
    "url": "https://github.com/Jakeschincariol/replica-skill",
    "desc": "Eleven free Claude skills that clone any app: reverse-engineer it, rebuild it, test it for bugs, then fix what its users hate. Free, MIT.",
-   "stars": 3249,
+   "stars": 3260,
    "stars_per_day": 217.5,
    "created": "2026-10-03",
-   "age_days": 14.9,
+   "age_days": 15.0,
    "pushed": "2026-10-03",
    "language": "Python",
    "topics": [
@@ -708,18 +708,18 @@
     "reverse-engineering",
     "saas"
    ],
-   "forks": 510,
+   "forks": 513,
    "homepage": "https://opusjake.ai",
-   "score": 105.67
+   "score": 105.68
   },
   {
    "full_name": "lemomo-ai/lemo-opuscar",
    "url": "https://github.com/lemomo-ai/lemo-opuscar",
    "desc": "Claude Code skill for short films with no video model: 51 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98 and the new Evidence Films). By Lemomo. · Opus5.5 x 51 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南（新增「实证影像」）",
-   "stars": 2962,
-   "stars_per_day": 134.5,
+   "stars": 2966,
+   "stars_per_day": 134.4,
    "created": "2026-09-26",
-   "age_days": 22.0,
+   "age_days": 22.1,
    "pushed": "2026-10-18",
    "language": "JavaScript",
    "topics": [
@@ -744,16 +744,16 @@
     "video-production",
     "webgl"
    ],
-   "forks": 327,
+   "forks": 328,
    "homepage": "https://lemomo-ai.github.io/lemo-opuscar/",
-   "score": 104.71
+   "score": 104.7
   },
   {
    "full_name": "Human-Agent-Society/reef",
    "url": "https://github.com/Human-Agent-Society/reef",
    "desc": "Infrastructure for continually self‑improving agents",
    "stars": 7622,
-   "stars_per_day": 157.6,
+   "stars_per_day": 157.4,
    "created": "2026-08-31",
    "age_days": 48.4,
    "pushed": "2026-10-18",
@@ -770,13 +770,13 @@
    ],
    "forks": 707,
    "homepage": "https://reefinfra.ai",
-   "score": 103.74
+   "score": 103.73
   },
   {
    "full_name": "Vincentwei1021/video-shotcraft",
    "url": "https://github.com/Vincentwei1021/video-shotcraft",
    "desc": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 152 shot recipe cards, 209 motion previews, a production-ready template",
-   "stars": 12342,
+   "stars": 12345,
    "stars_per_day": 135.7,
    "created": "2026-07-19",
    "age_days": 91.0,
@@ -807,7 +807,7 @@
    "url": "https://github.com/feder-cr/invisible_playwright_mcp",
    "desc": "Playwright MCP server undetected by anti-bots and captchas: AI agent browses the web on anti-detect stealth Firefox, Python, undetected browser automation, scraping, computer use.",
    "stars": 2766,
-   "stars_per_day": 149.7,
+   "stars_per_day": 149.3,
    "created": "2026-09-29",
    "age_days": 18.5,
    "pushed": "2026-10-17",
@@ -836,13 +836,13 @@
    ],
    "forks": 453,
    "homepage": "https://github.com/feder-cr/invisible_playwright_mcp/wiki",
-   "score": 102.99
+   "score": 102.95
   },
   {
    "full_name": "totec448-spec/chat-on-steroids",
    "url": "https://github.com/totec448-spec/chat-on-steroids",
    "desc": "Cross-platform local MCP capabilities for ChatGPT with Chrome integration, Goal, Compact & Resume, and durable multi-agent workflows.",
-   "stars": 5015,
+   "stars": 5018,
    "stars_per_day": 88.2,
    "created": "2026-08-22",
    "age_days": 56.9,
@@ -860,52 +860,52 @@
     "multi-agent",
     "windows"
    ],
-   "forks": 654,
+   "forks": 655,
    "homepage": "",
-   "score": 102.44
+   "score": 102.43
   },
   {
    "full_name": "trycompai/crm",
    "url": "https://github.com/trycompai/crm",
    "desc": "Comp AI CRM is an open source, CRM designed for AI agents. Agentic-first CRM.",
-   "stars": 11412,
-   "stars_per_day": 145.3,
+   "stars": 11414,
+   "stars_per_day": 145.2,
    "created": "2026-07-31",
-   "age_days": 78.5,
+   "age_days": 78.6,
    "pushed": "2026-09-11",
    "language": "TypeScript",
    "topics": [],
-   "forks": 1657,
+   "forks": 1658,
    "homepage": "https://trycrm.ai",
-   "score": 101.83
-  },
-  {
-   "full_name": "Mak5er/AirCard",
-   "url": "https://github.com/Mak5er/AirCard",
-   "desc": "Apple Wallet Card Skinner for iOS 18+ (No Jailbreak Required)",
-   "stars": 6699,
-   "stars_per_day": 212.6,
-   "created": "2026-09-16",
-   "age_days": 31.5,
-   "pushed": "2026-10-05",
-   "language": "Swift",
-   "topics": [],
-   "forks": 467,
-   "homepage": "",
-   "score": 101.52
+   "score": 101.82
   },
   {
    "full_name": "Edge0-AI/Edge0",
    "url": "https://github.com/Edge0-AI/Edge0",
    "desc": "Run 35B MoE models in ~2.5 GB of RAM. Weights stream from SSD; a trained router predicts loads a step ahead. Mac, iPhone, Android, Windows supported",
-   "stars": 5698,
-   "stars_per_day": 142.9,
+   "stars": 5721,
+   "stars_per_day": 143.3,
    "created": "2026-09-08",
    "age_days": 39.9,
    "pushed": "2026-10-16",
    "language": "Python",
    "topics": [],
-   "forks": 1019,
+   "forks": 1023,
+   "homepage": "",
+   "score": 101.56
+  },
+  {
+   "full_name": "Mak5er/AirCard",
+   "url": "https://github.com/Mak5er/AirCard",
+   "desc": "Apple Wallet Card Skinner for iOS 18+ (No Jailbreak Required)",
+   "stars": 6700,
+   "stars_per_day": 212.3,
+   "created": "2026-09-16",
+   "age_days": 31.6,
+   "pushed": "2026-10-05",
+   "language": "Swift",
+   "topics": [],
+   "forks": 468,
    "homepage": "",
    "score": 101.51
   },
@@ -913,7 +913,7 @@
    "full_name": "google/artemis",
    "url": "https://github.com/google/artemis",
    "desc": "ARTEMIS turns natural-language instructions into reliable Android automation. It automates end-to-end workflows, captures logs, and integrates seamlessly with AI coding assistants such as Antigravity, Codex, and Claude Code.  It also achieves 99%+ success rate on AndroidWorld Benchmark.",
-   "stars": 12235,
+   "stars": 12241,
    "stars_per_day": 186.2,
    "created": "2026-08-13",
    "age_days": 65.7,
@@ -926,7 +926,7 @@
     "test-automation",
     "testing"
    ],
-   "forks": 1414,
+   "forks": 1415,
    "homepage": "",
    "score": 101.49
   }
