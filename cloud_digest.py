@@ -51,7 +51,7 @@ def main():
 
     # 1. 抓
     log("抓 GitHub 上新鲜的 AI 项目…")
-    rc = run("fetch_repos.py", ["--days", "120"], allow_codes=(0, 3))
+    rc = run("fetch_repos.py", ["--days", "240"], allow_codes=(0, 3))
     if rc == 3:
         log("GitHub 不通，本次跳过（不发垃圾）")
         return 0

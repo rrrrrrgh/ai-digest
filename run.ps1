@@ -68,7 +68,7 @@ try {
     # --- 1. 抓候选 ---
     if (-not $SkipFetch) {
         Log '抓 GitHub 新鲜 AI 项目…'
-        & $py -X utf8 (Join-Path $root 'fetch_repos.py') --days 120 2>&1 | ForEach-Object { Log "$_" }
+        & $py -X utf8 (Join-Path $root 'fetch_repos.py') --days 240 2>&1 | ForEach-Object { Log "$_" }
         if ($LASTEXITCODE -eq 3) { Log 'GitHub 打不开（梯子没开？）——本次跳过'; exit 0 }
         if ($LASTEXITCODE -ne 0) { Log "抓取失败 exit=$LASTEXITCODE"; exit 1 }
     }

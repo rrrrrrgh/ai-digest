@@ -153,7 +153,7 @@ def main():
     for item in cfg["queries"]:
         q = item["q"].format(since=since, min=min_stars)
         url = (f"{API}/search/repositories?q={urllib.parse.quote(q)}"
-               f"&sort={item.get('sort','stars')}&order=desc&per_page=30")
+               f"&sort={item.get('sort','stars')}&order=desc&per_page=50")
         try:
             data = http_json(url)
         except urllib.error.HTTPError as e:
@@ -168,7 +168,7 @@ def main():
             elif e.code == 422 and "topic:" in q:      # 这个 topic 不存在，退化成普通关键词
                 q2 = q.replace("topic:", "")
                 url2 = (f"{API}/search/repositories?q={urllib.parse.quote(q2)}"
-                        f"&sort={item.get('sort','stars')}&order=desc&per_page=30")
+                        f"&sort={item.get('sort','stars')}&order=desc&per_page=50")
                 try:
                     data = http_json(url2)
                 except Exception as e2:

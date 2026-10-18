@@ -1,7 +1,7 @@
 {
-  "min_stars": 1500,
-  "max_age_days": 150,
-  "top_n": 36,
+  "min_stars": 800,
+  "max_age_days": 240,
+  "top_n": 120,
   "queries": [
     {
       "label": "Agent / 自动化",
@@ -92,6 +92,61 @@
       "label": "脑洞 / 好玩",
       "q": "AI desktop app created:>{since} stars:>{min}",
       "sort": "stars"
+    },
+    {
+      "label": "Agent / 自动化",
+      "q": "topic:agentic created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "Agent / 自动化",
+      "q": "topic:multi-agent created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "MCP / 工具链",
+      "q": "topic:model-context-protocol created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "LLM 应用",
+      "q": "topic:llm-inference created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "LLM 应用",
+      "q": "topic:prompt-engineering created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "图像 / 视频",
+      "q": "topic:image-editing created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "图像 / 视频",
+      "q": "topic:video-editing created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "语音 / 音乐",
+      "q": "topic:speech-to-text created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "数据 / 爬虫",
+      "q": "topic:web-scraping created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "办公 / 效率",
+      "q": "topic:productivity created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "脑洞 / 好玩",
+      "q": "topic:ai-art created:>{since} stars:>{min}",
+      "sort": "stars"
     }
   ],
   "block": [
@@ -108,7 +163,14 @@
     "免费不限量",
     "free-model",
     "no api key",
-    "白嫖"
+    "白嫖",
+    "chatgpt web",
+    "chatgpt-web",
+    "codex quota",
+    "免额度",
+    "不消耗额度",
+    "账号池",
+    "逆向"
   ],
   "noise": [
     "awesome",

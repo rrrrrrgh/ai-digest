@@ -104,21 +104,56 @@ def main():
     cfg = json.load(open(os.path.join(HERE, "config.json"), encoding="utf-8-sig"))
     blocked = [b.lower() for b in cfg.get("block", [])]
 
-    picks = []
-    used_cat = set()
+    fresh = []
     for r in data["repos"]:
         if r["full_name"] in sent:
             continue
         blob = ((r.get("desc") or "") + " " + " ".join(r.get("topics") or [])).lower()
         if any(b in blob for b in blocked):
             continue
+        fresh.append(r)
+
+    # 第一轮：每个方向只取一个，保证一期里有 4 个不同口味
+    picks, used_cat = [], set()
+    for r in fresh:
         cat = label_of(r)
-        if cat in used_cat and len(picks) < n - 1:
+        if cat in used_cat:
             continue
         used_cat.add(cat)
         picks.append(r)
         if len(picks) >= n:
             break
+
+    # 第二轮：方向不够就按分数补，不再挑食
+    if len(picks) < n:
+        got = {r["full_name"] for r in picks}
+        for r in fresh:
+            if r["full_name"] in got:
+                continue
+            picks.append(r)
+            got.add(r["full_name"])
+            if len(picks) >= n:
+                break
+
+    # 第三轮：新项目真的用光了，就从推过的最早那批里捞回来补位（会标注）
+    if len(picks) < n and sent:
+        got = {r["full_name"] for r in picks}
+        by_name = {r["full_name"]: r for r in data["repos"]}
+        for name in sent:                       # sent 是按推送先后追加的，越靠前越久
+            if len(picks) >= n:
+                break
+            if name in got or name not in by_name:
+                continue
+            r = dict(by_name[name])
+            blob = ((r.get("desc") or "") + " " + " ".join(r.get("topics") or [])).lower()
+            if any(x in blob for x in blocked):
+                continue
+            r["_repeat"] = True
+            picks.append(r)
+            got.add(name)
+
+    print(f"候选池 {len(data['repos'])} 个，其中没推过 {len(fresh)} 个，"
+          f"本期取 {len(picks)} 个（目标 {n}）")
     if not picks:
         print("候选都推过了，这期跳过。")
         return 0
@@ -131,10 +166,11 @@ def main():
     items = []
     for r in picks:
         items.append({
-            "emoji": "🔭",
+            "emoji": "🔁" if r.get("_repeat") else "🔭",
             "name": r["full_name"].split("/")[-1],
             "repo": r["full_name"],
             "tag": label_of(r),
+            "repeat": bool(r.get("_repeat")),
             "meta": f"★{human_num(r['stars'])} · +{r['stars_per_day']:.0f}/天 · "
                     f"{r['language'] or '多语言'} · {human_age(r['age_days'])}龄",
             "one_liner": clean_desc(r["desc"]),

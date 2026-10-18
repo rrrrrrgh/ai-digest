@@ -168,6 +168,8 @@ def render_html(issue):
                      + (f'<span style="{CSS_TAG}">{esc(p["tag"])}</span>' if p.get("tag") else "")
                      + (f'<span style="font-size:12px;color:#98a2b3;">{esc(p.get("meta",""))}</span>'
                         if p.get("meta") else "")
+                     + (f'<span style="font-size:11.5px;color:#b08968;margin-left:6px;">'
+                        f'· 之前推过</span>' if p.get("repeat") else "")
                      + '</div>')
         parts.append(f'<div style="{CSS_NAME}">{esc(p.get("emoji",""))} '
                      f'{i}. {esc(p["name"])}</div>')
