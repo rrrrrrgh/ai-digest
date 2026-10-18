@@ -69,7 +69,11 @@ def li(items):
 
 
 def fav_config():
-    """收藏配置：Worker 模式（fav_base+fav_key）或 GitHub issue 模式（fav_repo）。"""
+    """收藏配置：Worker 模式（fav_base+fav_key）或 GitHub issue 模式（fav_repo）。
+
+    优先级：环境变量 > channels.json（本机私密）> config.json（公开，会进仓库）。
+    fav_repo 不是敏感信息，放 config.json 里就不用额外配 Secret。
+    """
     base = os.environ.get("FAV_BASE", "").strip()
     key = os.environ.get("FAV_KEY", "").strip()
     frepo = os.environ.get("FAV_REPO", "").strip()
@@ -80,6 +84,13 @@ def fav_config():
             base = base or (cfg.get("fav_base") or "").strip()
             key = key or (cfg.get("fav_key") or "").strip()
             frepo = frepo or (cfg.get("fav_repo") or "").strip()
+        except Exception:
+            pass
+    if not frepo:
+        try:
+            pub = json.load(open(os.path.join(HERE, "config.json"), encoding="utf-8-sig"))
+            frepo = (pub.get("fav_repo") or "").strip()
+            base = base or (pub.get("fav_base") or "").strip()
         except Exception:
             pass
     return base.rstrip("/"), key, frepo

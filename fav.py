@@ -80,14 +80,55 @@ def parse_issues(issues):
     return items
 
 
+def _scrape_issues(repo):
+    """API 被限流时的兜底：直接抓 issues 页面里的内嵌 JSON。"""
+    import urllib.request
+    found = []
+    for q in ("is%3Aissue", "is%3Aissue+is%3Aclosed"):
+        url = f"https://github.com/{repo}/issues?q={q}"
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        html = urllib.request.urlopen(req, timeout=25).read().decode("utf-8", "replace")
+        m = re.search(
+            r'<script type="application/json" data-target="react-app.embeddedData">(.*?)</script>',
+            html, re.S)
+        if not m:
+            continue
+        data = json.loads(m.group(1))
+
+        def walk(o):
+            if isinstance(o, dict):
+                if isinstance(o.get("title"), str) and "number" in o:
+                    found.append({"title": o.get("title"), "body": o.get("body") or "",
+                                  "state": (o.get("state") or "")})
+                for v in o.values():
+                    walk(v)
+            elif isinstance(o, list):
+                for v in o:
+                    walk(v)
+
+        walk(data)
+    uniq, seen = [], set()
+    for it in found:
+        k = (it["title"], it["body"][:40])
+        if k in seen:
+            continue
+        seen.add(k)
+        uniq.append(it)
+    return uniq
+
+
 def sync_from_github(repo=None):
     """从 GitHub issue 拉收藏（标题形如 `[收藏] owner/repo`），合并进 favorites.md。"""
     import urllib.request
     if not repo:
-        ch = os.path.join(HERE, "channels.json")
-        if os.path.exists(ch):
-            cfg = json.load(open(ch, encoding="utf-8-sig"))
-            repo = (cfg.get("fav_repo") or "").strip()
+        for fn in ("channels.json", "config.json"):
+            p = os.path.join(HERE, fn)
+            if os.path.exists(p):
+                try:
+                    cfg = json.load(open(p, encoding="utf-8-sig"))
+                    repo = repo or (cfg.get("fav_repo") or "").strip()
+                except Exception:
+                    pass
     if not repo:
         raise SystemExit("还没配置仓库：在 channels.json 里加 "
                          '"fav_repo": "你的用户名/仓库名"')
@@ -97,12 +138,20 @@ def sync_from_github(repo=None):
     tk = os.environ.get("GITHUB_TOKEN", "").strip()
     if tk:
         headers["Authorization"] = "Bearer " + tk
-    req = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(req, timeout=25) as r:
-        issues = json.loads(r.read().decode("utf-8", "replace"))
-    items = parse_issues(issues)
+    issues = None
+    try:
+        url = (f"https://api.github.com/repos/{repo}/issues"
+               f"?state=all&per_page=100&sort=created&direction=desc")
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=25) as r:
+            issues = json.loads(r.read().decode("utf-8", "replace"))
+    except Exception as e:
+        print(f"接口不可用（{type(e).__name__}），改用抓页面…")
+        issues = _scrape_issues(repo)
+    items = parse_issues(issues or [])
     if not items:
-        print(f"{repo} 里还没有带 [收藏] 的 issue（或者仓库是私有的，我看不到）")
+        print(f"{repo} 里还没有带「[收藏] 」标题的 issue "
+              f"（现有 {len(issues or [])} 条 issue，但标题不匹配，或者仓库是私有的）")
         return
     n = save(load() + items)
     print(f"仓库里有 {len(items)} 条收藏，去重后本地共 {n} 个 → {STORE}")

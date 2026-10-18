@@ -3,38 +3,165 @@
   "max_age_days": 150,
   "top_n": 36,
   "queries": [
-    {"label": "Agent / 自动化", "q": "topic:ai-agent created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "Agent / 自动化", "q": "topic:agent created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "MCP / 工具链", "q": "topic:mcp created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "LLM 应用", "q": "topic:llm-app created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "LLM 应用", "q": "topic:llm created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "AI 工具", "q": "topic:ai-tools created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "AI 工具", "q": "AI in:name,description created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "图像 / 视频", "q": "topic:text-to-video created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "图像 / 视频", "q": "topic:image-generation created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "图像 / 视频", "q": "topic:stable-diffusion created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "语音 / 音乐", "q": "topic:text-to-speech created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "语音 / 音乐", "q": "topic:voice-cloning created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "语音 / 音乐", "q": "topic:music-generation created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "本地 / 省钱", "q": "topic:local-llm created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "本地 / 省钱", "q": "topic:rag created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "脑洞 / 好玩", "q": "topic:game created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "脑洞 / 好玩", "q": "topic:fun created:>{since} stars:>{min}", "sort": "stars"},
-    {"label": "脑洞 / 好玩", "q": "AI desktop app created:>{since} stars:>{min}", "sort": "stars"}
+    {
+      "label": "Agent / 自动化",
+      "q": "topic:ai-agent created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "Agent / 自动化",
+      "q": "topic:agent created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "MCP / 工具链",
+      "q": "topic:mcp created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "LLM 应用",
+      "q": "topic:llm-app created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "LLM 应用",
+      "q": "topic:llm created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "AI 工具",
+      "q": "topic:ai-tools created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "AI 工具",
+      "q": "AI in:name,description created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "图像 / 视频",
+      "q": "topic:text-to-video created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "图像 / 视频",
+      "q": "topic:image-generation created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "图像 / 视频",
+      "q": "topic:stable-diffusion created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "语音 / 音乐",
+      "q": "topic:text-to-speech created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "语音 / 音乐",
+      "q": "topic:voice-cloning created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "语音 / 音乐",
+      "q": "topic:music-generation created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "本地 / 省钱",
+      "q": "topic:local-llm created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "本地 / 省钱",
+      "q": "topic:rag created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "脑洞 / 好玩",
+      "q": "topic:game created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "脑洞 / 好玩",
+      "q": "topic:fun created:>{since} stars:>{min}",
+      "sort": "stars"
+    },
+    {
+      "label": "脑洞 / 好玩",
+      "q": "AI desktop app created:>{since} stars:>{min}",
+      "sort": "stars"
+    }
   ],
   "block": [
-    "nsfw", "18+", "成人", "色情", "porn", "hentai", "crack", "破解", "keygen",
-    "watermark", "免费不限量", "free-model", "no api key", "白嫖"
+    "nsfw",
+    "18+",
+    "成人",
+    "色情",
+    "porn",
+    "hentai",
+    "crack",
+    "破解",
+    "keygen",
+    "watermark",
+    "免费不限量",
+    "free-model",
+    "no api key",
+    "白嫖"
   ],
   "noise": [
-    "awesome", "-list", "list of", "curated", "collection of", "tutorial", "course",
-    "book", "roadmap", "interview", "cheatsheet", "cheat-sheet", "notes", "survey",
-    "paper", "papers", "reading", "handbook", "guide", "从入门", "教程", "学习", "面试",
-    "简历", "速查", "导航", "资料", "教材", "课程", "笔记", "合集", "大全", "整理"
+    "awesome",
+    "-list",
+    "list of",
+    "curated",
+    "collection of",
+    "tutorial",
+    "course",
+    "book",
+    "roadmap",
+    "interview",
+    "cheatsheet",
+    "cheat-sheet",
+    "notes",
+    "survey",
+    "paper",
+    "papers",
+    "reading",
+    "handbook",
+    "guide",
+    "从入门",
+    "教程",
+    "学习",
+    "面试",
+    "简历",
+    "速查",
+    "导航",
+    "资料",
+    "教材",
+    "课程",
+    "笔记",
+    "合集",
+    "大全",
+    "整理"
   ],
   "bonus": {
-    "一键": 12, "one-click": 10, "one click": 10, "free": 6, "免费": 8, "local": 8,
-    "本地": 8, "open source": 4, "开源": 4, "demo": 6, "cli": 3, "desktop": 4,
-    "zero": 5, "no api key": 8, "无需": 6, "offline": 6
-  }
+    "一键": 12,
+    "one-click": 10,
+    "one click": 10,
+    "free": 6,
+    "免费": 8,
+    "local": 8,
+    "本地": 8,
+    "open source": 4,
+    "开源": 4,
+    "demo": 6,
+    "cli": 3,
+    "desktop": 4,
+    "zero": 5,
+    "no api key": 8,
+    "无需": 6,
+    "offline": 6
+  },
+  "fav_repo": "rrrrrrgh/Redheart"
 }
