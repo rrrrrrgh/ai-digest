@@ -57,7 +57,10 @@ def render_html(issue):
     parts = []
     parts.append(f'<div style="{CSS_WRAP}">')
     parts.append(f'<div style="{CSS_SEC}">AI 项目雷达 · 第 {issue.get("issue_no",1)} 期'
-                 f' · {esc(issue.get("date",""))}</div>')
+                 f' · {esc(issue.get("date",""))}'
+                 + ("· 文案：机器翻译" if issue.get("copy_mode") == "mt" else
+                    "· 文案：AI 润色" if issue.get("copy_mode") == "llm" else "")
+                 + '</div>')
     parts.append(f'<div style="font-size:23px;font-weight:800;line-height:1.4;color:#0b0d12;'
                  f'margin:6px 0 14px;">{esc(issue["title"])}</div>')
     if issue.get("hook"):
@@ -86,6 +89,9 @@ def render_html(issue):
                          f'margin:12px 0 4px;border:1px solid #e7e9ee;background:#fff;" />')
         if p.get("one_liner"):
             parts.append(f'<div style="{CSS_ONE}">{esc(p["one_liner"])}</div>')
+        if p.get("detail"):
+            parts.append(f'<div style="font-size:15.5px;line-height:1.9;color:#2b2f36;'
+                         f'margin:0 0 8px;">{esc(p["detail"])}</div>')
         if p.get("desc_en"):
             parts.append(f'<div style="font-size:12.5px;line-height:1.7;color:#9aa0aa;'
                          f'margin:0 0 6px;">原文：{esc(p["desc_en"])}</div>')
