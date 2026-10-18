@@ -22,6 +22,7 @@ jobs:
       - name: 抓 → 组 → 渲 → 发微信
         env:
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
