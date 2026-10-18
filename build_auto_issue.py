@@ -118,6 +118,8 @@ def main():
                     f"{r['language'] or '多语言'} · 建库 {r['created']}",
             "one_liner": clean_desc(r["desc"]),
             "desc_raw": (r["desc"] or "").strip(),
+            "stars": r["stars"], "stars_per_day": r["stars_per_day"],
+            "language": r["language"], "age_days": r["age_days"],
             "why": [
                 f"热度：{r['stars']:,} 星，平均每天涨 {r['stars_per_day']:.0f} 星，仓库 {r['age_days']:.0f} 天大。",
                 f"语言 {r['language'] or '多语言'} ｜ Fork {r['forks']:,} ｜ 最近更新 {r['pushed']}",

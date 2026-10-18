@@ -1,0 +1,58 @@
+name: AI 项目雷达
+
+# 电脑关着也能推：GitHub 的服务器替你跑，不依赖你本机，也不用开梯子。
+# 每 3 天一次（UTC 12:00 = 北京时间 20:00）。
+# 就算被重复触发，due.py 也会拦住「距上期不满 2.5 天」的重复发送。
+on:
+  schedule:
+    - cron: '0 12 */3 * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '无视周期，立刻发一期'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 抓项目 → 组一期 → 渲染 → 发微信（一个入口）
+        env:
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            python cloud_digest.py --force
+          else
+            python cloud_digest.py
+          fi
+
+      - name: 回写状态（顺便防止 60 天不活动被自动停掉）
+        if: always()
+        run: |
+          git config user.name 'ai-digest-bot'
+          git config user.email 'ai-digest-bot@users.noreply.github.com'
+          git add -A .   # build/、candidates.json、channels.json 都在 .gitignore 里
+          git commit -m "digest $(date -u +%F)" || echo "没有变化"
+          git push || echo "推送失败（可能没有写权限），不影响本期"

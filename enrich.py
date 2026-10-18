@@ -222,35 +222,58 @@ def llm_polish(repo, readme_brief):
     if not key:
         return None
     base = (os.environ.get("LLM_BASE_URL") or "https://api.deepseek.com").rstrip("/")
-    model = os.environ.get("LLM_MODEL") or "deepseek-chat"
+    model = os.environ.get("LLM_MODEL") or "deepseek-flash"
     prompt = (
-        "你在给一个爱刷短视频的普通用户写 GitHub 项目推荐。要求：说人话，不用"
-        "『旨在/致力于/赋能/一站式』这类词；不编造材料里没有的功能；句子短。\n\n"
+        "你在给一个爱刷短视频的普通用户写 GitHub 项目推荐，像给朋友发微信介绍新玩具。\n"
+        "要求：说人话；不用『旨在/致力于/赋能/一站式/生态』这类词；不编造材料里没有的功能；\n"
+        "每条短句；允许带一点比喻和吐槽，但别油。\n\n"
         f"项目：{repo['full_name']}\n"
         f"官方描述：{repo.get('desc') or '(无)'}\n"
         f"语言：{repo.get('language')}｜星数：{repo.get('stars')}｜涨星：约 {repo.get('stars_per_day')}/天\n"
         f"README 摘录：{readme_brief[:1200]}\n\n"
-        "输出严格 JSON：{\"one_liner\":\"一句话说清这是什么东西，可以带一个生活化比喻\","
-        "\"why\":[\"为啥值得看，三条，每条不超过 40 字\"],"
-        "\"try_it\":\"一个具体的土办法玩法，不超过 50 字\"}"
+        "只输出 JSON，格式："
+        '{"one_liner":"一句话说清这是什么东西，40 字内，可带生活化比喻",'
+        '"why":["为啥值得看，三条，每条 40 字内"],'
+        '"try_it":"一个具体的土办法玩法，50 字内"}'
     )
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.7,
-        "max_tokens": 900,
+        "temperature": 0.85,
+        "max_tokens": 1200,
+        "response_format": {"type": "json_object"},
     }
-    try:
+    if "deepseek.com" in base:
+        # 这个场景不需要思考链，关掉省钱又省时间
+        payload["thinking"] = {"type": "disabled"}
+
+    def _post(body):
         req = urllib.request.Request(
             base + "/chat/completions",
-            data=json.dumps(payload).encode("utf-8"),
+            data=json.dumps(body).encode("utf-8"),
             headers={"Content-Type": "application/json",
                      "Authorization": "Bearer " + key})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            res = json.loads(r.read().decode("utf-8", "replace"))
-        txt = res["choices"][0]["message"]["content"]
+        with urllib.request.urlopen(req, timeout=90) as r:
+            return json.loads(r.read().decode("utf-8", "replace"))
+
+    try:
+        try:
+            res = _post(payload)
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "replace")[:300]
+            if e.code in (400, 422):
+                # 有些兼容接口不认 response_format / thinking，去掉再试一次
+                slim = {k: v for k, v in payload.items()
+                        if k not in ("response_format", "thinking")}
+                res = _post(slim)
+            else:
+                print(f"    ! 大模型报错 {e.code}：{body}")
+                return None
+        txt = res["choices"][0]["message"].get("content") or ""
+        print(f"    · 模型用掉 {res.get('usage', {}).get('total_tokens', '?')} tokens")
         m = re.search(r"\{.*\}", txt, re.S)
         if not m:
+            print(f"    ! 模型没返回 JSON：{txt[:120]}")
             return None
         data = json.loads(m.group(0))
         if not data.get("one_liner"):
@@ -261,7 +284,7 @@ def llm_polish(repo, readme_brief):
             "try_it": str(data.get("try_it") or "")[:100],
         }
     except Exception as e:
-        print(f"    ! 大模型润色失败（{type(e).__name__}），退回翻译模式")
+        print(f"    ! 大模型润色失败（{type(e).__name__}: {str(e)[:80]}），退回翻译模式")
         return None
 
 
@@ -297,7 +320,14 @@ def enrich_issue(path):
             if sentences:
                 fallback["why"] = sentences[:3]
 
-        got = llm_polish({"full_name": full, **p}, brief) if use_llm else None
+        repo_ctx = {
+            "full_name": full,
+            "desc": p.get("desc_raw") or p.get("desc_en") or "",
+            "stars": p.get("stars"),
+            "stars_per_day": p.get("stars_per_day"),
+            "language": p.get("language"),
+        }
+        got = llm_polish(repo_ctx, brief) if use_llm else None
         text = got or fallback
 
         p["desc_en"] = (p.get("desc_raw") or p.get("desc_en") or "").strip()
