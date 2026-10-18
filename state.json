@@ -1,6 +1,6 @@
 {
- "last_issue": 2,
- "last_sent": "2026-10-18 15:53",
+ "last_issue": 3,
+ "last_sent": "2026-10-18 16:58",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -10,6 +10,10 @@
   "deepseek-ai/deepseek-harness",
   "yetone/magpie",
   "jub0t/Concat",
-  "tangency-labs/solidcraft"
+  "tangency-labs/solidcraft",
+  "genspark-ai/genoffice",
+  "miuuyy/codex-chatgpt-web",
+  "LosaLosSantos/aurelio-finance",
+  "jev-chat/jev-chat-jarvis"
  ]
 }
