@@ -1,6 +1,6 @@
 {
- "last_issue": 5,
- "last_sent": "2026-10-18 21:42",
+ "last_issue": 6,
+ "last_sent": "2026-10-23 00:43",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -30,6 +30,10 @@
   "storytold/photocraft",
   "morluto/rea",
   "nexu-io/open-design",
-  "JuliusBrussee/caveman"
+  "JuliusBrussee/caveman",
+  "deepseek-ai/DeepInfer",
+  "Graphify-Labs/graphify",
+  "Egonex-AI/Understand-Anything",
+  "MemPalace/mempalace"
  ]
 }
