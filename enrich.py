@@ -340,7 +340,7 @@ def llm_polish(repo, readme_brief):
             "one_liner": str(data.get("one_liner"))[:160],
             "detail": str(data.get("detail") or "")[:400],
             "why": [str(x)[:90] for x in (data.get("why") or [])][:3],
-            "tags": [str(x)[:8] for x in (data.get("tags") or [])][:3],
+            "tags": [str(x).strip()[:12] for x in (data.get("tags") or []) if str(x).strip()][:3],
             "try_it": str(data.get("try_it") or "")[:120],
         }
     except Exception as e:

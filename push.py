@@ -225,10 +225,13 @@ def main():
         print("标题:", title)
         print(plain)
         return
+    short_code = ""
     if channel == "mail":
         print("mail:", send_mail(cfg, title, content_html, plain))
     elif channel == "pushplus":
-        print("pushplus:", send_pushplus(cfg, title, content_html))
+        r = send_pushplus(cfg, title, content_html)
+        short_code = (r or {}).get("data") or ""
+        print("pushplus:", r, "| 流水号:", short_code)
     elif channel == "serverchan":
         print("serverchan:", send_serverchan(cfg, title, content_md))
     elif channel == "webhook":
@@ -247,6 +250,9 @@ def main():
         if p.get("repo") and p["repo"] not in sent:
             sent.append(p["repo"])
     st["sent_repos"] = sent[-400:]
+    if short_code:
+        st["last_shortcode"] = short_code
+    st["last_title"] = title
     json.dump(st, open(state_file, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"已记账：第 {no} 期 · {st['last_sent']} · 已推过 {len(st['sent_repos'])} 个项目")
 
