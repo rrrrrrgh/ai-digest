@@ -1,6 +1,6 @@
 {
- "last_issue": 6,
- "last_sent": "2026-10-23 00:43",
+ "last_issue": 7,
+ "last_sent": "2026-10-25 23:37",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -34,6 +34,12 @@
   "deepseek-ai/DeepInfer",
   "Graphify-Labs/graphify",
   "Egonex-AI/Understand-Anything",
-  "MemPalace/mempalace"
- ]
+  "MemPalace/mempalace",
+  "DietrichGebert/ponytail",
+  "odysseus-dev/odysseus",
+  "ayghri/i-have-adhd",
+  "t8y2/dbx"
+ ],
+ "last_shortcode": "66275132c46d40e3a3b69bc70ebaaae9",
+ "last_title": "这几个AI项目最近在GitHub上悄悄涨星"
 }
