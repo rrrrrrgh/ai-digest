@@ -1,6 +1,6 @@
 {
- "last_issue": 8,
- "last_sent": "2026-10-29 01:58",
+ "last_issue": 9,
+ "last_sent": "2026-11-01 00:53",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -42,8 +42,12 @@
   "rddmwmddr/android-ad-cleaner",
   "Zagitta/gpu-unlock",
   "lidge-jun/opencodex",
-  "Ryze-AI-Adgent/open-seo-mcp-skills"
+  "Ryze-AI-Adgent/open-seo-mcp-skills",
+  "anhao/ai-pose-gallery-zh",
+  "tt-a1i/archify",
+  "h4ckf0r0day/obscura",
+  "AienTech/dossier"
  ],
- "last_shortcode": "04ca6fda82f84315bc047d2da126de96",
- "last_title": "最近这些AI项目有点东西"
+ "last_shortcode": "4740193293dd4c4c89d6005c06ce5e93",
+ "last_title": "最近在涨星的几个AI项目，有点意思"
 }
