@@ -1,6 +1,6 @@
 {
- "last_issue": 9,
- "last_sent": "2026-11-01 00:53",
+ "last_issue": 10,
+ "last_sent": "2026-11-05 03:27",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -46,8 +46,12 @@
   "anhao/ai-pose-gallery-zh",
   "tt-a1i/archify",
   "h4ckf0r0day/obscura",
-  "AienTech/dossier"
+  "AienTech/dossier",
+  "deepseek-ai/dsh-superagent-prototype",
+  "wangzan101/Mika",
+  "valentderah/totk-pc-recomp",
+  "microsoft/TokenEconomizer"
  ],
- "last_shortcode": "4740193293dd4c4c89d6005c06ce5e93",
- "last_title": "最近在涨星的几个AI项目，有点意思"
+ "last_shortcode": "9c90b4b1ce1f494bb78e7813270a96ef",
+ "last_title": "手机里住进个会自己点屏幕的AI"
 }
