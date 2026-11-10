@@ -1,6 +1,6 @@
 {
- "last_issue": 11,
- "last_sent": "2026-11-08 01:30",
+ "last_issue": 12,
+ "last_sent": "2026-11-11 03:23",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -54,8 +54,12 @@
   "ccch1mneyyy/dsh-Go",
   "storytold/filmcraft",
   "mw00/project-maya",
-  "Orkas-AI/Orkas"
+  "Orkas-AI/Orkas",
+  "heydamir/unslop",
+  "KKKKhazix/agent-autoloop",
+  "qybaihe/bla",
+  "FareedKhan-dev/kimi-k3-in-c"
  ],
- "last_shortcode": "c1bb7d5602b24bab9a9dd44761f83903",
- "last_title": "四个AI新项目，手机跑代码有点上头"
+ "last_shortcode": "1f78b29a30334888a6900ec869dc330c",
+ "last_title": "AI项目又整新活了"
 }
