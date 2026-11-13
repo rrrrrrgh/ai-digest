@@ -1,6 +1,6 @@
 {
- "last_issue": 12,
- "last_sent": "2026-11-11 03:23",
+ "last_issue": 13,
+ "last_sent": "2026-11-14 03:17",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -58,8 +58,12 @@
   "heydamir/unslop",
   "KKKKhazix/agent-autoloop",
   "qybaihe/bla",
-  "FareedKhan-dev/kimi-k3-in-c"
+  "FareedKhan-dev/kimi-k3-in-c",
+  "lemomo-ai/lemo-opuscar",
+  "Nutlope/hallmark",
+  "NVIDIA/SkillSpector",
+  "anomalyco/hex"
  ],
- "last_shortcode": "1f78b29a30334888a6900ec869dc330c",
- "last_title": "AI项目又整新活了"
+ "last_shortcode": "63001c7b27e84860b28ac14c92fa82a1",
+ "last_title": "最近在涨星的 AI 项目，有几个挺有意思"
 }
