@@ -1,8 +1,8 @@
 {
  "issue_no": 14,
- "date": "2026-11-19",
- "push_title": "老代码换 Rust，竟有录像对照",
- "title": "老代码换 Rust，竟有录像对照",
+ "date": "2026-11-22",
+ "push_title": "老代码换 Rust，有人连比对工具都做好了",
+ "title": "老代码换 Rust，有人连比对工具都做好了",
  "hook": "这期是电脑没人看着时自动出的「速报」：项目介绍已经翻成中文，配了图和演示，但我不吹彩虹屁——想看带梗的精读版，等你打开电脑叫我一声。",
  "intro": "筛选只看三件事：涨星速度、新鲜度、是不是真能上手。介绍来自项目 README 的翻译整理，原文放在每张卡片下面一行，方便你核对。",
  "picks": [
@@ -12,28 +12,58 @@
    "repo": "erkamyaman/rust-anything",
    "tag": "Coding Agent",
    "repeat": false,
-   "meta": "★5.0k · +1489/天 · Rust · 3 天龄",
-   "one_liner": "把老代码一块块换成 Rust，每换一块都拿原版录像对比，像照着录像学跳舞。",
+   "meta": "★7.9k · +1254/天 · Rust · 6 天龄",
+   "one_liner": "把老代码一块块换成 Rust，每换一块都拿原件比对行为",
    "desc_raw": "Rewrite your whole app in Rust, one piece at a time, checked against the original's recorded behavior at every step. CLIs, HTTP servers and libraries in TypeScript, Python, C, Go, Ruby and Java.",
-   "stars": 4952,
-   "stars_per_day": 1488.8,
+   "stars": 7884,
+   "stars_per_day": 1253.8,
    "language": "Rust",
-   "age_days": 3.3,
+   "age_days": 6.3,
    "why": [
-    "最近用 AI 帮忙重写代码很火，这工具正好补上「怎么验证没改坏」这一环。",
-    "同类工具多是翻译语法，它盯的是行为是否一致，还能把原版录像当验收标准。",
-    "涨星很猛，说明不少人真在想换 Rust；但项目还年轻，大项目上手成本不低。"
+    "Prettier 的 Rust 版已跑通 1.7 万条记录，字节级一致，这事刚被验证",
+    "涨星一天一千多，说明「AI 写重写、工具做裁判」正成为新玩法",
+    "不是自动翻译代码，而是拿行为当裁判，比纯 AI 改写更敢信"
    ],
    "how": "装个 Node 就能跑；装个 Python 环境就能跑",
    "url": "https://github.com/erkamyaman/rust-anything",
    "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/erkamyaman/rust-anything/main/docs/assets/brands/coderabbit.png",
    "desc_en": "Rewrite your whole app in Rust, one piece at a time, checked against the original's recorded behavior at every step. CLIs, HTTP servers and libraries in TypeScript, Python, C, Go, Ruby and Java.",
-   "detail": "它解决的是「想用 Rust 重写老项目，又怕改坏」的问题。先录下你现有 Node、Python、C、Go、Ruby、Java 程序在各种输入下的返回结果，再用它生成 Rust 的壳子，Rust 代码由你或 AI 来写。最后把录像逐条在 Rust 上重放，全对上才算过关。你得会跑命令行，也得懂点原语言和 Rust。",
-   "try_it": "挑个小脚本，用它的 record 录一遍，再用 bridge 生成 Rust 壳，跑 diff 看能不能全对上。",
+   "detail": "它解决的是「想用 Rust 重写老项目，但怕改坏」的问题。你先让它跑一遍原程序，录下输入输出；然后让 AI 一块块写 Rust 版本，每块都回放对比，对不上就卡住。适合有 TypeScript、Python、Go 等老项目、又怕重写出错的人，得会用命令行。",
+   "try_it": "找个你熟悉的小 CLI 项目，先跑 record 录下行为，再让 AI 写一小块 Rust 试试 diff。",
    "tags": [
     "命令行",
     "免费开源",
     "本地跑"
+   ]
+  },
+  {
+   "emoji": "🔭",
+   "name": "neonclipping",
+   "repo": "iamajmeena/neonclipping",
+   "tag": "本地模型",
+   "repeat": false,
+   "meta": "★2.1k · +608/天 · Python · 3 天龄",
+   "one_liner": "把长视频自动剪成竖屏带字幕片段，像有个剪辑小工。",
+   "desc_raw": "Paste a link, get captioned 9:16 clips in ~2 min. Free, local, open-source clipping engine (audio-first, YouTube captions, local LLM).",
+   "stars": 2054,
+   "stars_per_day": 608.0,
+   "language": "Python",
+   "age_days": 3.4,
+   "why": [
+    "涨星约 608/天，说明很多人正需要这种本地剪辑工具",
+    "和在线剪辑服务比，它不传视频、不要订阅，隐私和成本都省",
+    "做短视频搬运或切片的人可以先用它粗筛，再人工挑"
+   ],
+   "how": "装个 Python 环境就能跑",
+   "url": "https://github.com/iamajmeena/neonclipping",
+   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/iamajmeena/neonclipping/main/docs/demo.gif",
+   "desc_en": "Paste a link, get captioned 9:16 clips in ~2 min. Free, local, open-source clipping engine (audio-first, YouTube captions, local LLM).",
+   "detail": "它解决的是长视频里挑精彩片段太费时间的问题。你粘一条 YouTube、Twitch、Kick 链接，或者自己的 MP4，它在本机跑，自动找出可能好看的片段，切成 9:16 竖屏，配上字幕、标题和开头钩子。全程不上传、不要账号，装好就能用，得自己跑本地程序。",
+   "try_it": "先拿一段 10 分钟的 YouTube 视频试，看它切出来的片段合不合你口味，再上长直播。",
+   "tags": [
+    "本地跑",
+    "免费开源",
+    "命令行"
    ]
   },
   {
@@ -42,29 +72,29 @@
    "repo": "bilawalsidhu/gods-eye-view",
    "tag": "AI 项目",
    "repeat": false,
-   "meta": "★6.6万 · +440/天 · JavaScript · 5 个月龄",
-   "one_liner": "把全球公开的飞机轮船卫星数据，揉进一个能转的 3D 地球里，像玩地图。",
+   "meta": "★6.6万 · +434/天 · JavaScript · 5 个月龄",
+   "one_liner": "把卫星、飞机、轮船的公开数据全叠在一个 3D 地球仪上，像开间谍卫星。",
    "desc_raw": "God's Eye View: a spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe. Official site: godseyeview.ai",
-   "stars": 65937,
-   "stars_per_day": 440.0,
+   "stars": 66335,
+   "stars_per_day": 434.1,
    "language": "JavaScript",
-   "age_days": 149.8,
+   "age_days": 152.8,
    "why": [
-    "涨星每天约 440，说明正被大量人发现，现在进正好赶上。",
-    "和普通地图不同，它把卫星、飞机、船、摄像头放在同一屏，能一路从全球缩到一条街。",
-    "适合爱看实时世界动态、又不想装一堆软件的人；数据全来自公开源，别当成真间谍工具。"
+    "YouTube 上同名系列播放量超 2500 万，自带流量和教程",
+    "和普通航班追踪网站不同，它把天上地下海里的信号汇到一张图",
+    "星数一周涨几十万，现在进去还算早期，社区正热"
    ],
    "how": "装个 Node 就能跑",
    "url": "https://github.com/bilawalsidhu/gods-eye-view",
    "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/bilawalsidhu/gods-eye-view/main/docs/media/site/hero.webp",
    "demo": "https://www.youtube.com/watch?v=S2VJU5DQqlU",
    "desc_en": "God's Eye View: a spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe. Official site: godseyeview.ai",
-   "detail": "平时飞机轨迹、船的位置、卫星轨道、地震和公开摄像头，散在不同网站。这个项目把它们全塞进一个 3D 地球，点哪个就能追哪个，还能开热成像模式看。浏览器打开就能转，也能自己装到本地跑，不用懂代码。",
-   "try_it": "先打开它的官网看托管版演示，转两下地球点点飞机；想本地跑就照 README 用 Pinokio 一键装。",
+   "detail": "它把飞机应答机、船舶信标、卫星轨道、地震仪和公共摄像头的数据，全部放到同一个可旋转的 3D 地球上。点开任意一个光点，就能追踪对应的飞机、轮船或卫星，还能切换到 FLIR 热成像模式。用网页打开即可，也能用 Pinokio 一键装或命令行跑，不用懂技术。",
+   "try_it": "先上官网 godseyeview.ai 看演示，再进 hosted 版排队，或找 Pinokio 一键装本地跑。",
    "tags": [
     "网页版",
     "免费开源",
-    "本地跑"
+    "命令行"
    ]
   },
   {
@@ -73,63 +103,32 @@
    "repo": "alibaba/open-code-review",
    "tag": "AI Agent",
    "repeat": false,
-   "meta": "★5.4万 · +293/天 · Go · 6 个月龄",
-   "one_liner": "阿里内部用了两年的AI代码审查工具，现在开源了",
+   "meta": "★5.5万 · +293/天 · Go · 6 个月龄",
+   "one_liner": "阿里内部用了两年的 AI 代码审查工具，现在开源了",
    "desc_raw": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
-   "stars": 54354,
-   "stars_per_day": 292.6,
+   "stars": 55352,
+   "stars_per_day": 293.3,
    "language": "Go",
-   "age_days": 185.7,
+   "age_days": 188.7,
    "why": [
-    "阿里内部几万人用过两年，不是刚出的玩具",
-    "规则和模型分工，比纯靠大模型瞎猜稳一些",
-    "涨星快得离谱，趁早看看别人在聊什么"
+    "阿里内部几万人用过，踩过的坑比一般开源项目多",
+    "和纯大模型审查不同，规则管死问题、模型管上下文",
+    "涨星快得离谱，说明很多人正被代码审查折磨"
    ],
    "how": "看 README 照着装，一般半小时内",
    "url": "https://github.com/alibaba/open-code-review",
    "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/alibaba/open-code-review/main/imgs/highlights-en.png",
    "desc_en": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
-   "detail": "它读你的 Git 改动，把改过的文件交给大模型逐行检查，指出可能的 bug 和安全问题。命令行装好后配个模型接口就能跑，不用自己写规则。也能整文件扫一遍，适合看别人留下的老代码。",
-   "try_it": "装好后先别接自己的项目，拿一个旧仓库跑 scan，看它能不能挑出你真踩过的坑。",
+   "detail": "你写完代码提交前，它能自动挑毛病。它先读 Git diff，再把改动的文件交给大模型，模型能翻全文、搜代码库、对照别的改动，最后给出精确到行的评论。用法是命令行工具，配好模型接口就能跑，也支持整文件扫描。",
+   "try_it": "装好后配个模型 Key，在项目里跑一次审查，看它挑出的第一条评论准不准。",
    "tags": [
-    "要 API Key",
     "命令行",
-    "免费开源"
-   ]
-  },
-  {
-   "emoji": "🔭",
-   "name": "linger",
-   "repo": "simplexai-labs/linger",
-   "tag": "本地模型",
-   "repeat": false,
-   "meta": "★1.4k · +141/天 · TypeScript · 10 天龄",
-   "one_liner": "把Claude级大脑装进你电脑的本地AI小助手",
-   "desc_raw": "Linger is An Open-Source Personal Agent That Runs Fully on Your PC.  We aim to break Big Tech’s grip on AI by bringing powerful local AI to everyday computers through efficient model–harness co-design, so everyone can run their own.",
-   "stars": 1366,
-   "stars_per_day": 141.2,
-   "language": "TypeScript",
-   "age_days": 9.7,
-   "why": [
-    "本地跑大模型的方案最近扎堆出现，这个把125B塞进12GB显卡算激进",
-    "和云端助手比，不用按token付费，数据不出门，适合在意隐私的人",
-    "现在只能算早期尝鲜，配置门槛高，普通电脑跑起来未必顺"
-   ],
-   "how": "装个 Node 就能跑",
-   "url": "https://github.com/simplexai-labs/linger",
-   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/simplexai-labs/linger/main/assets/linger-story.webp",
-   "desc_en": "Linger is An Open-Source Personal Agent That Runs Fully on Your PC.  We aim to break Big Tech’s grip on AI by bringing powerful local AI to everyday computers through efficient model–harness co-design, so everyone can run their own.",
-   "detail": "它解决的是用AI要联网、要付token费、数据还得上传的问题。装在自己电脑上后，模型和数据都在本地跑，能记住你的事、主动帮你干活。门槛是电脑内存要够，12GB显卡配64GB内存才跑得动那个125B大模型。",
-   "try_it": "去GitHub看README的硬件要求，先对照自己电脑的显卡和内存够不够，再决定要不要装。",
-   "tags": [
-    "本地跑",
-    "要显卡",
+    "要 API Key",
     "免费开源"
    ]
   }
  ],
  "outro": "速报只解决「不漏」。精读版会解释这东西到底能干嘛、坑在哪、你该不该动手。",
- "footer": "AI 项目雷达 · 第 14 期（自动速报）· 2026-11-19",
- "compare": "open-code-review和rust-anything都涉及代码，前者审查代码，后者迁移重写代码，按需选。",
+ "footer": "AI 项目雷达 · 第 14 期（自动速报）· 2026-11-22",
  "copy_mode": "llm"
 }
