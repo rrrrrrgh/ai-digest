@@ -1,2 +1,2 @@
-老代码换 Rust，有人连比对工具都做好了
-本期：rust-anything / neonclipping / gods-eye-view
+老代码换Rust，竟还能边换边验货
+本期：rust-anything / clipboard-history-manager-windows / neonclipping

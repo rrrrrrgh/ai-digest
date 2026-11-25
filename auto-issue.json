@@ -1,8 +1,8 @@
 {
  "issue_no": 14,
- "date": "2026-11-22",
- "push_title": "老代码换 Rust，有人连比对工具都做好了",
- "title": "老代码换 Rust，有人连比对工具都做好了",
+ "date": "2026-11-25",
+ "push_title": "老代码换Rust，竟还能边换边验货",
+ "title": "老代码换Rust，竟还能边换边验货",
  "hook": "这期是电脑没人看着时自动出的「速报」：项目介绍已经翻成中文，配了图和演示，但我不吹彩虹屁——想看带梗的精读版，等你打开电脑叫我一声。",
  "intro": "筛选只看三件事：涨星速度、新鲜度、是不是真能上手。介绍来自项目 README 的翻译整理，原文放在每张卡片下面一行，方便你核对。",
  "picks": [
@@ -12,28 +12,58 @@
    "repo": "erkamyaman/rust-anything",
    "tag": "Coding Agent",
    "repeat": false,
-   "meta": "★7.9k · +1254/天 · Rust · 6 天龄",
-   "one_liner": "把老代码一块块换成 Rust，每换一块都拿原件比对行为",
+   "meta": "★9.6k · +1021/天 · Rust · 9 天龄",
+   "one_liner": "给老代码配个翻译官，一段段换成 Rust，每换一段都验货",
    "desc_raw": "Rewrite your whole app in Rust, one piece at a time, checked against the original's recorded behavior at every step. CLIs, HTTP servers and libraries in TypeScript, Python, C, Go, Ruby and Java.",
-   "stars": 7884,
-   "stars_per_day": 1253.8,
+   "stars": 9568,
+   "stars_per_day": 1020.8,
    "language": "Rust",
-   "age_days": 6.3,
+   "age_days": 9.4,
    "why": [
-    "Prettier 的 Rust 版已跑通 1.7 万条记录，字节级一致，这事刚被验证",
-    "涨星一天一千多，说明「AI 写重写、工具做裁判」正成为新玩法",
-    "不是自动翻译代码，而是拿行为当裁判，比纯 AI 改写更敢信"
+    "Rust 重写潮正热，但大家最怕改完行为变了，它专治这个",
+    "跟一次性重写不同，它是逐段验收，出错能立刻定位",
+    "适合有老项目、又怕翻车的团队；单人小项目可能不值当"
    ],
    "how": "装个 Node 就能跑；装个 Python 环境就能跑",
    "url": "https://github.com/erkamyaman/rust-anything",
    "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/erkamyaman/rust-anything/main/docs/assets/brands/coderabbit.png",
    "desc_en": "Rewrite your whole app in Rust, one piece at a time, checked against the original's recorded behavior at every step. CLIs, HTTP servers and libraries in TypeScript, Python, C, Go, Ruby and Java.",
-   "detail": "它解决的是「想用 Rust 重写老项目，但怕改坏」的问题。你先让它跑一遍原程序，录下输入输出；然后让 AI 一块块写 Rust 版本，每块都回放对比，对不上就卡住。适合有 TypeScript、Python、Go 等老项目、又怕重写出错的人，得会用命令行。",
-   "try_it": "找个你熟悉的小 CLI 项目，先跑 record 录下行为，再让 AI 写一小块 Rust 试试 diff。",
+   "detail": "它解决的是老项目想换 Rust 又不敢大动的问题。你把原来的程序交给它，它先录下原程序在各种输入下的表现，然后你的 AI 编程助手一段段写 Rust 版本，每写完一段就拿录像对比，对上了才继续。需要你有 AI 编程工具和能跑原项目的环境，不是点一下就行。",
+   "try_it": "先拿你最没底的那个小脚本试，跑一遍 record 录下行为，再让 AI 写 Rust 版对比。",
    "tags": [
     "命令行",
+    "本地跑",
+    "免费开源"
+   ]
+  },
+  {
+   "emoji": "🔭",
+   "name": "clipboard-history-manager-windows",
+   "repo": "Umbra9179/clipboard-history-manager-windows",
+   "tag": "AI 项目",
+   "repeat": false,
+   "meta": "★1.3k · +638/天 · C# · 2 天龄",
+   "one_liner": "像给复制粘贴加了个自动存档，找回过期内容",
+   "desc_raw": "Free open-source Windows clipboard manager with searchable history, image previews, tags, editing and backup.",
+   "stars": 1261,
+   "stars_per_day": 637.8,
+   "language": "C#",
+   "age_days": 2.0,
+   "why": [
+    "一天涨六百多星，说明很多人真被剪贴板覆盖烦到",
+    "同类工具多是老牌付费或界面老旧，这个界面现代还免费",
+    "适合天天复制粘贴、又不想学快捷键之外东西的人"
+   ],
+   "how": "看 README 照着装，一般半小时内",
+   "url": "https://github.com/Umbra9179/clipboard-history-manager-windows",
+   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/Umbra9179/clipboard-history-manager-windows/main/assets/banner.png",
+   "desc_en": "Free open-source Windows clipboard manager with searchable history, image previews, tags, editing and backup.",
+   "detail": "Windows 自带的剪贴板只能存一条，复制新的就覆盖旧的。这个软件在后台记下你复制过的文字、图片、文件和链接，还能搜索、打标签、编辑，随时翻出来再用。下载压缩包解压后双击 exe 就能用，不用命令行。",
+   "try_it": "去仓库 Releases 页下 4.2.1 的 zip，解压后双击 exe，随便复制几段文字再打开翻翻。",
+   "tags": [
     "免费开源",
-    "本地跑"
+    "本地跑",
+    "有中文"
    ]
   },
   {
@@ -42,24 +72,24 @@
    "repo": "iamajmeena/neonclipping",
    "tag": "本地模型",
    "repeat": false,
-   "meta": "★2.1k · +608/天 · Python · 3 天龄",
-   "one_liner": "把长视频自动剪成竖屏带字幕片段，像有个剪辑小工。",
+   "meta": "★2.6k · +405/天 · Python · 6 天龄",
+   "one_liner": "把长视频自动剪成竖屏带字幕的片段，像有个不睡觉的剪辑小工。",
    "desc_raw": "Paste a link, get captioned 9:16 clips in ~2 min. Free, local, open-source clipping engine (audio-first, YouTube captions, local LLM).",
-   "stars": 2054,
-   "stars_per_day": 608.0,
+   "stars": 2619,
+   "stars_per_day": 405.2,
    "language": "Python",
-   "age_days": 3.4,
+   "age_days": 6.5,
    "why": [
-    "涨星约 608/天，说明很多人正需要这种本地剪辑工具",
-    "和在线剪辑服务比，它不传视频、不要订阅，隐私和成本都省",
-    "做短视频搬运或切片的人可以先用它粗筛，再人工挑"
+    "涨星约 405/天，短视频剪辑自动化正被大量人盯上",
+    "和在线剪辑工具比，它本地跑、零 API 费，素材不出门",
+    "适合常剪直播切片、又不想花钱订阅的人；但本地跑吃机器性能，装环境对小白仍有门槛"
    ],
    "how": "装个 Python 环境就能跑",
    "url": "https://github.com/iamajmeena/neonclipping",
    "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/iamajmeena/neonclipping/main/docs/demo.gif",
    "desc_en": "Paste a link, get captioned 9:16 clips in ~2 min. Free, local, open-source clipping engine (audio-first, YouTube captions, local LLM).",
-   "detail": "它解决的是长视频里挑精彩片段太费时间的问题。你粘一条 YouTube、Twitch、Kick 链接，或者自己的 MP4，它在本机跑，自动找出可能好看的片段，切成 9:16 竖屏，配上字幕、标题和开头钩子。全程不上传、不要账号，装好就能用，得自己跑本地程序。",
-   "try_it": "先拿一段 10 分钟的 YouTube 视频试，看它切出来的片段合不合你口味，再上长直播。",
+   "detail": "你丢一个 YouTube、Twitch、Kick 链接或自己的 MP4 进去，它先把长视频切成一段段适合手机看的 9:16 竖屏，再自动配字幕，还给每段起标题和开场钩子。全程在你自己的电脑上跑，不用注册账号、不用上传、不用付费，官方说 85 分钟的直播大约 97 秒能处理完。门槛是得装 Python 环境，Windows 有一键安装包，不会弄也能照着 PDF 指南抄，英文和印地语都有。",
+   "try_it": "先拿一段自己手机里的 MP4 试，别一上来就丢三小时直播；装好跑通一条，再去看那条 97 秒的实测说明。",
    "tags": [
     "本地跑",
     "免费开源",
@@ -68,67 +98,36 @@
   },
   {
    "emoji": "🔭",
-   "name": "gods-eye-view",
-   "repo": "bilawalsidhu/gods-eye-view",
-   "tag": "AI 项目",
-   "repeat": false,
-   "meta": "★6.6万 · +434/天 · JavaScript · 5 个月龄",
-   "one_liner": "把卫星、飞机、轮船的公开数据全叠在一个 3D 地球仪上，像开间谍卫星。",
-   "desc_raw": "God's Eye View: a spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe. Official site: godseyeview.ai",
-   "stars": 66335,
-   "stars_per_day": 434.1,
-   "language": "JavaScript",
-   "age_days": 152.8,
-   "why": [
-    "YouTube 上同名系列播放量超 2500 万，自带流量和教程",
-    "和普通航班追踪网站不同，它把天上地下海里的信号汇到一张图",
-    "星数一周涨几十万，现在进去还算早期，社区正热"
-   ],
-   "how": "装个 Node 就能跑",
-   "url": "https://github.com/bilawalsidhu/gods-eye-view",
-   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/bilawalsidhu/gods-eye-view/main/docs/media/site/hero.webp",
-   "demo": "https://www.youtube.com/watch?v=S2VJU5DQqlU",
-   "desc_en": "God's Eye View: a spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe. Official site: godseyeview.ai",
-   "detail": "它把飞机应答机、船舶信标、卫星轨道、地震仪和公共摄像头的数据，全部放到同一个可旋转的 3D 地球上。点开任意一个光点，就能追踪对应的飞机、轮船或卫星，还能切换到 FLIR 热成像模式。用网页打开即可，也能用 Pinokio 一键装或命令行跑，不用懂技术。",
-   "try_it": "先上官网 godseyeview.ai 看演示，再进 hosted 版排队，或找 Pinokio 一键装本地跑。",
-   "tags": [
-    "网页版",
-    "免费开源",
-    "命令行"
-   ]
-  },
-  {
-   "emoji": "🔭",
-   "name": "open-code-review",
-   "repo": "alibaba/open-code-review",
+   "name": "ARTEX",
+   "repo": "BaaRai/ARTEX",
    "tag": "AI Agent",
    "repeat": false,
-   "meta": "★5.5万 · +293/天 · Go · 6 个月龄",
-   "one_liner": "阿里内部用了两年的 AI 代码审查工具，现在开源了",
-   "desc_raw": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
-   "stars": 55352,
-   "stars_per_day": 293.3,
+   "meta": "★2.1万 · +429/天 · Go · 7 周龄",
+   "one_liner": "让 AI 自己组队打靶的渗透测试平台，每步都留证据",
+   "desc_raw": "Actively maintained ARTEX: AI autonomous penetration testing system. Self-hosted, model-agnostic, evidence-backed findings. Community continuation of Autumn-27/ARTEX, AGPL-3.0.",
+   "stars": 20587,
+   "stars_per_day": 428.9,
    "language": "Go",
-   "age_days": 188.7,
+   "age_days": 48.0,
    "why": [
-    "阿里内部几万人用过，踩过的坑比一般开源项目多",
-    "和纯大模型审查不同，规则管死问题、模型管上下文",
-    "涨星快得离谱，说明很多人正被代码审查折磨"
+    "涨星一天四百多，说明安全圈正把 AI agent 从聊天推向真干活",
+    "和套壳扫器的 AI 不同，它把动作和证据绑死，结果能复核",
+    "自托管、不锁模型，适合想自己控数据的团队；但真拿它打靶有法律风险"
    ],
-   "how": "看 README 照着装，一般半小时内",
-   "url": "https://github.com/alibaba/open-code-review",
-   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/alibaba/open-code-review/main/imgs/highlights-en.png",
-   "desc_en": "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
-   "detail": "你写完代码提交前，它能自动挑毛病。它先读 Git diff，再把改动的文件交给大模型，模型能翻全文、搜代码库、对照别的改动，最后给出精确到行的评论。用法是命令行工具，配好模型接口就能跑，也支持整文件扫描。",
-   "try_it": "装好后配个模型 Key，在项目里跑一次审查，看它挑出的第一条评论准不准。",
+   "how": "有 docker，一条命令拉起；装个 Node 就能跑",
+   "url": "https://github.com/BaaRai/ARTEX",
+   "cover": "https://gh-proxy.com/https://raw.githubusercontent.com/BaaRai/ARTEX/main/screenshots/tasks.png",
+   "desc_en": "Actively maintained ARTEX: AI autonomous penetration testing system. Self-hosted, model-agnostic, evidence-backed findings. Community continuation of Autumn-27/ARTEX, AGPL-3.0.",
+   "detail": "它把渗透测试拆成目标和任务：规划器拆解目标，多个 AI 工人调用真实安全工具去执行，结果写回两张关联图——一张记录你掌握的目标信息，一张记录测试进展。每个发现都绑定抓到的请求和响应作证据，所有动作受范围规则、审批和预算限制。你自托管部署，接自己的模型 API，用自然语言给目标，它自己往前跑到验证出结论。",
+   "try_it": "找台隔离测试机，Docker 起服务，接个模型 API，先拿官方靶场练手。",
    "tags": [
-    "命令行",
     "要 API Key",
-    "免费开源"
+    "命令行",
+    "本地跑"
    ]
   }
  ],
  "outro": "速报只解决「不漏」。精读版会解释这东西到底能干嘛、坑在哪、你该不该动手。",
- "footer": "AI 项目雷达 · 第 14 期（自动速报）· 2026-11-22",
+ "footer": "AI 项目雷达 · 第 14 期（自动速报）· 2026-11-25",
  "copy_mode": "llm"
 }

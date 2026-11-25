@@ -1,6 +1,6 @@
 {
- "last_issue": 13,
- "last_sent": "2026-11-14 03:17",
+ "last_issue": 14,
+ "last_sent": "2026-11-26 05:07",
  "sent_repos": [
   "onehumanbeing/esp32-iphone-agent",
   "hypit-ai/hypit",
@@ -62,8 +62,12 @@
   "lemomo-ai/lemo-opuscar",
   "Nutlope/hallmark",
   "NVIDIA/SkillSpector",
-  "anomalyco/hex"
+  "anomalyco/hex",
+  "erkamyaman/rust-anything",
+  "Umbra9179/clipboard-history-manager-windows",
+  "iamajmeena/neonclipping",
+  "BaaRai/ARTEX"
  ],
- "last_shortcode": "63001c7b27e84860b28ac14c92fa82a1",
- "last_title": "最近在涨星的 AI 项目，有几个挺有意思"
+ "last_shortcode": "aafcffb32c0d4bf6ab55ad3015d15ac1",
+ "last_title": "老代码换Rust，竟还能边换边验货"
 }
